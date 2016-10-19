@@ -45,32 +45,19 @@
             </a>
             </div>
     </section>
+    <?php 
+    // if ( have_posts() ) :
+    //     while ( have_posts() ) : the_post();
+    //     endwhile;
+    //   endif;
+    ?>
     <section class="container" id="knowledges-lines">
         <div class="row">
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="">
-                <h5>CIENCIEAS EXACTAS SOCIOCULTURALES</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red2.png" alt="">
-                <h5>CIENCIEAS EXACTAS Y ESPECÍFICAS Y EDUCACIÓN AMBIENTAL</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red3.png" alt="">
-                <h5>TECNOLOGÍAS E INNOVACCIÓN</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red4.png" alt="">
-                <h5>EDUCACIÓN Y PEDAGOGÍA</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red5.png" alt="">
-                <h5>LENGUAJE, EDUCACIÓN Y ARTÍSTICA</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red6.png" alt="">
-                <h5>EMPRENDIMIENTO</h5>
-            </div>
+            <?php
+                $knowledgesLines = get_post( 87 );
+                $contentPost = $knowledgesLines->post_content;
+                echo $contentPost;
+            ?>
         </div>
     </section>
     <section class="container three-cols">
@@ -78,47 +65,35 @@
             <div class="col-md-6 left-col">
                 <h3 class="news">NOTICIAS</h3>
                 <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
+                <?php
+                    $args = array( 'posts_per_page' => 3, 'offset'=> 0, 'category' => 20 );
+
+                    $myposts = get_posts( $args );
+                    foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+                        <div class="col-md-4 image-article">
+                        <?php if ( has_post_thumbnail() ) {
+                            the_post_thumbnail(array(150, 153));
+                        } ?>
+                        </div>
+                        <div class="col-md-8 content-article">
+                            <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                            <content>
+                                <?php the_excerpt(); ?>
+                            </content>
+                            <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
+                        </div>
+                <?php endforeach; 
+                    wp_reset_postdata();
+                ?>
                 </div>
             </div>
             <div class="col-md-3 middle-col">
-                <h3 class="calendar">CALENDARIO</h3>
+                <!--<h3 class="calendar">CALENDARIO</h3>-->
+                <?php dynamic_sidebar( 'home_events' ); ?>
             </div>
             <div class="col-md-3 right-col">
                 <h3 class="twitter">TWITTER</h3>
+                <?php dynamic_sidebar( 'social_networks' ); ?>
             </div>
         </div>
     </section>
@@ -164,8 +139,8 @@
                 </div>
             </div>
             <div class="col-md-3 middle-col">
-                <h3 class="comments">COMENTARIOS RECIENTES</h3>
-                <div class="row last-comments">
+                <?php dynamic_sidebar( 'last_comments' ); ?>
+                <!--<div class="row last-comments">
                     <div class="col-md-3 profile-image">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
                     </div>
@@ -219,32 +194,11 @@
                             <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
                         </content> 
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="col-md-3 right-col">
-                <h3 class="login">LOGIN</h3>
-                <div class="row">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre Usuario</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                            <input type="checkbox"> Recordarme
-                            </label>
-                        </div>
-                        <a href="#nogo">Olvide contraseña</a>
-                        <button type="submit" class="btn btn-default">Entrar</button>
-                    </form>
-                </div>
+                <?php dynamic_sidebar( 'login_home' ); ?>
             </div>
         </div>
     </section>
-<?php
-    get_footer();
-?>
+<?php get_footer(); ?>

@@ -42,15 +42,7 @@
                 </button>                    
             </div>
             <div class="navbar-collapse collapse" id="principal-menu">
-                <ul class="nav navbar-nav">
-                    <li>Génesis Córdoba</li>
-                    <li>Proyectos</li>
-                    <li>Grupos</li>
-                    <li>Eventos</li>
-                    <li>Formación</li>
-                    <li>Biblioteca Virtual</li>
-                    <li>Buscador</li>
-                </ul>
+                <?php wp_nav_menu( array( 'theme_location' => 'menu-principal', 'menu_class' => 'nav navbar-nav') ); ?>
             </div>
         </div>
     </nav>

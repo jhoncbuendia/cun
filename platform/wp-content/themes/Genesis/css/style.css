@@ -163,6 +163,7 @@ header .social-icons {
   padding: 13px 0;
   white-space: nowrap;
 }
+.navbar-default .navbar-nav>li>a{color: #FFF;}
 #knowledges-lines .row {
   border-bottom: 1px solid #e3e2e2;
   padding: 43px 0 37px;
