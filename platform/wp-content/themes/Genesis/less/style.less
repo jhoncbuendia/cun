@@ -1,0 +1,176 @@
+@font-face {
+  font-family: 'GothamBlack';
+  src: url('../fonts/black/Gotham-Bold.eot');
+  src: url('../fonts/black/GothamBlack.woff') format('woff'),
+       url('../fonts/black/GothamBlack.ttf') format('truetype'),
+       url('../fonts/black/GothamBlack.woff') format('woff'),
+       url('../fonts/black/GothamBlack.ttf') format('truetype'),
+       url('../fonts/black/GothamBlack.svg#GothamBlack') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gotham-Bold';
+  src: url('../fonts/bold/Gotham-Bold.eot');
+  src: url('../fonts/bold/Gotham-Bold.woff2') format('woff2'),
+       url('../fonts/bold/Gotham-Bold.woff') format('woff'),
+       url('../fonts/bold/Gotham-Bold.ttf') format('truetype'),
+       url('../fonts/bold/Gotham-Bold.svg#Gotham-Bold') format('svg'),
+       url('../fonts/bold/Gotham-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('../fonts/book/Gotham-Book.eot');
+  src: url('../fonts/book/Gotham-Book.woff2') format('woff2'),
+       url('../fonts/book/Gotham-Book.woff') format('woff'),
+       url('../fonts/book/Gotham-Book.ttf') format('truetype'),
+       url('../fonts/book/Gotham-Book.svg#Gotham-Book') format('svg'),
+       url('../fonts/book/Gotham-Book.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+// Variables
+@black: 'GothamBlack';
+@bold: 'Gotham-Bold';
+@book: 'Gotham-Book';
+@c3e: #3e3d3d;
+body{
+    background: #FFF;
+    font-family: @book;
+}
+header{
+    height: 137px;
+    .logo, .logo-cun, .social-icons{position: relative;}
+    .logo{
+        top: 30px;
+    }
+    .logo-cun{
+        margin-right: 20px;
+        top: 25px;
+    }
+    .social-icons{
+        margin-right: 2px;
+        top: 36px; 
+    }
+}
+.navbar{
+    background-color: #0097dc;
+    color: #FFF;
+    margin-bottom: 0px;
+    ul, li{
+        height: 60px;
+        line-height: 60px;
+    }
+    ul{width: 100%}
+    li{
+        font-family: @book;
+        font-size: 19px;
+        // font-size: 1.5vw;
+        width: 14.285714285714286%;
+        text-align: center;
+    }
+}
+#knowledges-lines{
+    .row{
+        border-bottom: 1px solid #e3e2e2;
+        padding: 43px 0 37px;
+    }
+    .col-md-2{
+        text-align: center;
+        img{margin-bottom: 12px;}
+        h5{
+            text-align: center;
+            color: #636060;
+        }
+    }
+}
+.three-cols{
+    .left-col{
+        & > .row{
+            border-bottom: 1px solid #d7d7d7;
+            padding: 10px 0;
+            margin: 0;
+            &:last-child{border-bottom: none;}
+        }
+    }
+    h3{
+        color: #FFF;
+        height: 45px;
+        padding-left: 25px;
+        line-height: 49px;
+        &.news{background-color: #ff3541;}
+        &.calendar{background-color: #00c40d;}
+        &.twitter{background-color: #0097dc;}
+        &.blog, &.forum{background-color: #aa2097;}
+        &.comments{background-color: #ffa700;}
+        &.login{background-color: #ff7500;}
+    }
+    .image-article{padding-left: 0;}
+    .content-article{
+        padding: 0px 15px 0 0;
+    }
+    .title-article, content{
+        color: @c3e;
+    }
+    .title-article{
+        font-family: @bold;
+    }
+    content{max-height: 74px;}
+    .know-more{
+        background: #0072bc;
+        color: #FFF;
+        padding: 4px 10px;
+        text-align: center;
+        text-decoration: none;
+        float: right;
+        position: relative;
+        top: 9px;
+    }
+    .last-comments{
+        background-color: #efefef;
+        margin: 0 0 10px 0;
+        .profile-image{
+            padding-left: 7px;
+            padding-top: 7px; 
+        }
+        h6, content{
+            color: @c3e;
+        }
+        h6{
+            font-family: @bold;
+            margin-bottom: 0px;
+        }
+        content{
+            font-size: 11px;
+            p{line-height: 13px;}
+        }
+    }
+}
+footer{
+    background-color: #0097dc;
+    color: #FFF;
+    margin-top: 20px;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    text-align: center;
+    .logo-white{
+        margin-bottom: 25px;
+    }
+    .info-footer{
+        margin: auto;
+        float: none;
+        p{
+            margin-top: 25px;
+        }
+    }
+}
+.logos-end{
+    float: none;
+    margin: auto;
+    padding: 20px 0;
+    .better-country{
+        text-align: center;
+    }
+}
