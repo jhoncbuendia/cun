@@ -1,0 +1,162 @@
+.know-more {
+  background: #0072bc;
+  color: #FFF;
+  padding: 4px 10px;
+  text-align: center;
+  text-decoration: none;
+  float: right;
+  position: relative;
+  top: 9px;
+}
+h3.title {
+  color: #FFF;
+  height: 45px;
+  padding-left: 25px;
+  line-height: 49px;
+}
+h3.title.news {
+  background-color: #ff3541;
+}
+h3.title.calendar,
+h3.title.online {
+  background-color: #00c40d;
+}
+h3.title.twitter {
+  background-color: #0097dc;
+}
+h3.title.blog,
+h3.title.forum {
+  background-color: #aa2097;
+}
+h3.title.comments {
+  background-color: #ffa700;
+}
+h3.title.login {
+  background-color: #ff7500;
+}
+.navigation-options {
+  padding: 15px 0 30px 0;
+}
+.change-line {
+  float: right;
+}
+.change-line button {
+  background-color: #0097dc;
+  color: #FFF;
+  box-shadow: 2px 2px 2px 0px rgba(21, 21, 21, 0.5);
+  border: none;
+  padding: 4px 12px;
+}
+.change-line .btn-default:hover {
+  color: #3e3d3d;
+}
+.change-line .dropdown-menu li {
+  font-size: 11px;
+}
+.change-line .dropdown-menu li a {
+  color: #4b4949;
+}
+.change-line .dropdown-menu li a img {
+  margin-right: 10px;
+}
+.change-line .dropdown-menu li a span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.change-line .dropdown-menu li > a {
+  padding: 8px 20px;
+}
+.inline-users {
+  padding: 0 0 0 15px;
+}
+.the-users {
+  background-color: #eaedea;
+  margin: 0;
+}
+.the-users .image-profile {
+  padding: 15px 0 15px 15px;
+  margin-right: 15px;
+}
+.the-users .image-profile img {
+  max-width: 50px;
+  width: 50px;
+}
+.the-users .name-user {
+  color: #3e3d3d;
+  height: 80px;
+  line-height: 80px;
+}
+.last-comments {
+  background-color: #efefef;
+  margin: 0 0 10px 0;
+}
+.last-comments .profile-image {
+  padding: 7px;
+  max-width: 70px;
+}
+.last-comments h6,
+.last-comments content {
+  color: #3e3d3d;
+}
+.last-comments h6 {
+  font-family: 'Gotham-Bold';
+  margin-bottom: 0px;
+}
+.last-comments content {
+  font-size: 11px;
+}
+.last-comments content p {
+  line-height: 13px;
+}
+.line-banner img {
+  width: 100%;
+}
+.line-description {
+  padding-bottom: 23px;
+  border-bottom: #d7d7d7 1px solid;
+}
+.line-description h2 {
+  color: #ff3541;
+}
+.line-description h2 span {
+  color: #353434;
+}
+.line-description p {
+  color: #353434;
+  font-family: 'Gotham-Book';
+}
+.line-description .more-info {
+  color: #ff3541;
+  font-size: 21px;
+  text-decoration: underline;
+}
+.proyects .title {
+  background: #ff3541;
+  color: #FFF;
+  height: 44px;
+  padding-left: 10px;
+  line-height: 46px;
+}
+.proyects .search-proyects {
+  padding: 0 15px 0 0;
+}
+.proyects .search-proyects .row {
+  margin-bottom: 25px;
+}
+.proyects .search-proyects .row:last-child {
+  margin-bottom: 0;
+}
+.proyects .search-proyects .content-article {
+  font-size: 12px;
+}
+.proyects .search-proyects .content-article .title-article {
+  color: #3e3d3d;
+  font-family: 'Gotham-Bold';
+  margin-top: 0px;
+}
+.proyects .search-proyects .image-article img {
+  max-width: 108px;
+}
+.proyects .search-proyects .know-more {
+  float: left;
+}
