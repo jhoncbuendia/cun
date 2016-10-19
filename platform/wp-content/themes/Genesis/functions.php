@@ -80,4 +80,25 @@
 
     }
     add_action( 'widgets_init', 'onlineUsers' );
+
+    function wForums() {
+
+        register_sidebar( array(
+            'name'          => 'Forums',
+            'id'            => 'wforums',
+            'before_widget' => '<div>',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3 class="wforums">',
+            'after_title'   => '</h3>',
+        ) );
+
+    }
+    add_action( 'widgets_init', 'wForums' );
+
+    //create vertical list subforum layout
+    function custom_bbp_sub_forum_list() {
+          $args['separator'] = '';
+          return $args;
+    }
+   add_filter('bbp_after_list_forums_parse_args', 'custom_bbp_sub_forum_list' );
 ?>
