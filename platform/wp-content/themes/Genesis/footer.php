@@ -42,7 +42,8 @@
     </div>
     <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
-  <script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
+      <script>
   $( function() {
     $( "#datepicker" ).datepicker();
   } );

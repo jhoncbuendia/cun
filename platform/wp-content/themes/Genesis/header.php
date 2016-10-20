@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/jquery-ui.min.css">
 </head>
 <body>
     <header class="container">
