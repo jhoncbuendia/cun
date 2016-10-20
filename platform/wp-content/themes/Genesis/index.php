@@ -1,7 +1,4 @@
 <?php
-
-
-
 /**
  * The main template file
  *
@@ -25,15 +22,22 @@
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner.png" alt="...">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner1.jpg" alt="Vive la CUN, vive la U">
                 </div>
                 <div class="item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner.png" alt="...">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner2.jpg" alt="Vive la CUN, vive la U">
+                </div>
+                <div class="item">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner3.jpg" alt="Vive la CUN, vive la U">
+                </div>
+                <div class="item">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner4.jpg" alt="Vive la CUN, vive la U">
                 </div>
             </div>
 
@@ -48,16 +52,10 @@
             </a>
             </div>
     </section>
-    <?php 
-    // if ( have_posts() ) :
-    //     while ( have_posts() ) : the_post();
-    //     endwhile;
-    //   endif;
-    ?>
     <section class="container" id="knowledges-lines">
         <div class="row">
             <?php
-                $knowledgesLines = get_post( 87 );
+                $knowledgesLines = get_post( 106 );
                 $contentPost = $knowledgesLines->post_content;
                 echo $contentPost;
             ?>
@@ -66,10 +64,10 @@
     <section class="container three-cols">
         <div class="row">
             <div class="col-md-6 left-col">
-                <h3 class="news">NOTICIAS</h3>
+                <h3 class="title news">NOTICIAS</h3>
                 <div class="row">
                 <?php
-                    $args = array( 'posts_per_page' => 3, 'offset'=> 0, 'category' => 20 );
+                    $args = array( 'posts_per_page' => 3, 'offset'=> 0, 'category' => 'Noticias' );
 
                     $myposts = get_posts( $args );
                     foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -95,28 +93,25 @@
                 <?php dynamic_sidebar( 'home_events' ); ?>
             </div>
             <div class="col-md-3 right-col">
-                <h3 class="twitter">TWITTER</h3>
+                <h3 class="title twitter">TWITTER</h3>
                 <?php dynamic_sidebar( 'social_networks' ); ?>
             </div>
         </div>
     </section>
- 
     <section class="container three-cols">
         <div class="row">
             <div class="col-md-6 left-col">
-                <h3 class="blog">BLOG</h3>
+                <h3 class="title blog">BLOG</h3>
                 <div class="row">
-                    <div class="col-md-12 image-article">
-                    <?php    
-function console_log( $data ){
-  echo '<script>';
-  echo 'console.log('. json_encode( $data ) .')';
-  echo '</script>';
-}
-
-  dynamic_sidebar( 'wForums' ); 
-
-console_log( "zsxdcasdcvas" ); ?>
+                    <div class="col-md-4 image-article">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
+                    </div>
+                    <div class="col-md-8 content-article">
+                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
+                        <content>
+                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
+                        </content>
+                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
                     </div>
                 </div>
                 <div class="row">

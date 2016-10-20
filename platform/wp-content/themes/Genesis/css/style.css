@@ -107,6 +107,7 @@ h3.title.login {
   height: 80px;
   line-height: 80px;
 }
+/*COMMENTS*/
 .last-comments {
   background-color: #efefef;
   margin: 0 0 10px 0;
@@ -128,6 +129,34 @@ h3.title.login {
 }
 .last-comments content p {
   line-height: 13px;
+}
+/*DECENT COMMENTS*/
+.decent-comments ul{
+  padding: 0;
+}
+.decent-comments li{
+  list-style: none;
+  background-color: #efefef;
+  margin: 0 0 10px 0;
+  padding: 7px;
+}
+.decent-comments li .comment-author{
+  font-family: 'Gotham-Bold';
+  text-transform: uppercase;
+  color: #3e3d3d;
+}
+.decent-comments li .comment-link{display: block;}
+.decent-comments li .comment-link,
+.decent-comments li .comment-link a{
+  color: #3e3d3d;
+}
+.decent-comments li .comment-link a:hover{
+  text-decoration: underline;
+}
+.decent-comments li .comment-link,
+.decent-comments li .comment-link a,
+.decent-comments li .comment-excerpt{
+  font-size: 11px;
 }
 body {
   background: #FFF;
@@ -227,4 +256,19 @@ footer .info-footer p {
 }
 .logos-end .better-country {
   text-align: center;
+}
+#wp-calendar{
+  width: 100%;
+}
+#wp-calendar caption{display: none}
+#wp-calendar thead tr th{
+  background-color: #1e96d4;
+  color: #FFF;
+}
+#wp-calendar thead tr th, #wp-calendar tr td{
+  height: 43px;
+  text-align: center;
+}
+#wp-calendar tbody tr td{
+  border: 1px solid #dcdcdc;
 }

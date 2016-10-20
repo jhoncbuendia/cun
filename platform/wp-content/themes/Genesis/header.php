@@ -42,7 +42,7 @@
                 </button>                    
             </div>
             <div class="navbar-collapse collapse" id="principal-menu">
-                <?php wp_nav_menu( array( 'theme_location' => 'menu-principal', 'menu_class' => 'nav navbar-nav') ); ?>
+                <?php wp_nav_menu( array( 'theme_location' => 'menu-principal', 'menu_class' =>  'nav navbar-nav', 'container' => 'ul') ); ?>
             </div>
         </div>
     </nav>
