@@ -349,14 +349,16 @@ class Decent_Comments_Renderer {
 			}
 
 			$output .= '<div class="decent-comments">';
-			$output .= '<ul>';
+			$output .= '<div>';
 
 			foreach ( $comments as $comment) {
 
-				$output .= '<li>';
+				$output .= '<div>';
 
-				$output .= '<div class="comment">';
+				$output .= '<div class="row comment">';
 
+				$output .= '<div class="col-md-4">';
+				
 				if ( $show_avatar ) {
 					$output .= '<span class="comment-avatar">';
 					$comment_author_url = get_comment_author_url( $comment->comment_ID );
@@ -369,6 +371,10 @@ class Decent_Comments_Renderer {
 					}
 					$output .= '</span>'; // .comment-avatar
 				}
+				
+				$output .= '</div>';
+				
+				$output .= '<div class="col-md-8">';
 
 				if ( $show_author ) {
 					$output .= '<span class="comment-author">';
@@ -414,12 +420,14 @@ class Decent_Comments_Renderer {
 					$output .= '</span>'; // .comment-body or .comment-excerpt
 				}
 
+				$output .= '</div>';
+				
 				$output .= '</div>'; // .comment
 
-				$output .= '</li>';
+				$output .= '</div>';
 			}
 
-			$output .= '</ul>';
+			$output .= '</div>';
 			$output .= '</div>'; // .decent-comments
  		}
 		return apply_filters( 'decent_comments_comments_output', $output, $comments, $options );
