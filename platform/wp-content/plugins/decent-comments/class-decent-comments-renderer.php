@@ -350,30 +350,14 @@ class Decent_Comments_Renderer {
 
 			$output .= '<div class="decent-comments">';
 			$output .= '<ul>';
-			
-			/*
-			<div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                       <a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?></a>
-                    </div>
-                    <div class="col-md-8 name-user">
-                         <a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
-                    </div>
-  </div>
-			*/
 
 			foreach ( $comments as $comment) {
-				
-				
 
-				$output .= '<div class="row the-users">';
+				$output .= '<li>';
 
 				$output .= '<div class="comment">';
-				
-				$output .= '<div class="col-md-2 image-profile">';
 
 				if ( $show_avatar ) {
-					$output .= '<div class="col-md-2 image-profile">';
 					$output .= '<span class="comment-avatar">';
 					$comment_author_url = get_comment_author_url( $comment->comment_ID );
 					if ( !empty( $comment_author_url ) && $link_author ) {
@@ -384,13 +368,8 @@ class Decent_Comments_Renderer {
 						$output .= '</a>';
 					}
 					$output .= '</span>'; // .comment-avatar
-					$output .= '</div>'; // 
 				}
 
-				$output .= '</div>';
-				
-				$output .= '<div class="col-md-8 name-user">';
-				
 				if ( $show_author ) {
 					$output .= '<span class="comment-author">';
 					if ( $link_author ) {
@@ -436,10 +415,8 @@ class Decent_Comments_Renderer {
 				}
 
 				$output .= '</div>'; // .comment
-				
-				$output .= '</div>'; // .comment
 
-				$output .= '</div>';
+				$output .= '</li>';
 			}
 
 			$output .= '</ul>';
