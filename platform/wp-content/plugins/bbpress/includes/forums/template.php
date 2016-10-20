@@ -750,7 +750,7 @@ function bbp_list_forums( $args = '' ) {
 
 	// Parse arguments against default values
 	$r = bbp_parse_args( $args, array(
-		'before'            => '<ul class="bbp-forums-list">oyemeeeeee!',
+		'before'            => '<ul class="bbp-forums-list">',
 		'after'             => '</ul>',
 		'link_before'       => '<li class="bbp-forum">',
 		'link_after'        => '</li>',
