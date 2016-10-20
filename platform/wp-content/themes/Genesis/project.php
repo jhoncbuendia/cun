@@ -55,6 +55,7 @@
     </section>
     <section class="container project">
         <div class="col-md-9">
+		<?php get_search_form(); ?>
             <h1 class="title">Nombre del proyecto</h1>
             <h4 class="date-project">Octubre 10 de 2016</h4>
             <h3>Asesora en línea:</h3>
@@ -126,38 +127,7 @@
             <div class="row">
                 <h3 class="title comments">COMENTARIOS RECIENTES</h3>
 
-<?php
- if( $comments = $wpdb->get_results(
-   "SELECT comment_author, comment_author_url,
-    comment_ID, comment_post_ID
-   FROM $wpdb->comments
-   WHERE comment_approved = '1'
-   ORDER BY comment_date_gmt DESC LIMIT 15") ) :
-
-    global $comment;
-    foreach ($comments as $comment) { ?>
-<div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <a href="<?php bp_member_permalink(); ?>"><?php echo get_avatar($comment, 32 ); ?></a>
-                    </div>
-                    <div class="col-md-9">
-                        <h6><?php echo get_comment_author_link() ?></h6>
-                        <content>
-                            <p>
-                              <?php 
- 
-echo '<a href="' . get_permalink($comment->comment_ID)
-. '#comment-' . $comment->comment_ID . '">' 
-. get_the_title($comment->comment_post_ID) 
-. '</a>'; ?>
-                            </p>    
-                        </content> 
-                    </div>
-                </div>
-
- <?php   }
-    endif; ?>
-
+                <?php dynamic_sidebar( 'last_comments' ); ?>
                 
                 
             </div>

@@ -358,8 +358,7 @@ class Decent_Comments_Renderer {
 				$output .= '<div class="row comment">';
 
 				$output .= '<div class="col-md-4">';
-				
-				if ( $show_avatar ) {
+					if ( $show_avatar ) {
 					$output .= '<span class="comment-avatar">';
 					$comment_author_url = get_comment_author_url( $comment->comment_ID );
 					if ( !empty( $comment_author_url ) && $link_author ) {
@@ -371,9 +370,8 @@ class Decent_Comments_Renderer {
 					}
 					$output .= '</span>'; // .comment-avatar
 				}
-				
+
 				$output .= '</div>';
-				
 				$output .= '<div class="col-md-8">';
 
 				if ( $show_author ) {
@@ -421,8 +419,7 @@ class Decent_Comments_Renderer {
 				}
 
 				$output .= '</div>';
-				
-				$output .= '</div>'; // .comment
+				$output .= '</div> <hr/>'; // .comment
 
 				$output .= '</div>';
 			}
