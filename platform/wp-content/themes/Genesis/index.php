@@ -1,4 +1,7 @@
 <?php
+
+
+
 /**
  * The main template file
  *
@@ -97,24 +100,23 @@
             </div>
         </div>
     </section>
-  <?php bbp_list_forums(custom_bbp_sub_forum_list);  ?>
+ 
     <section class="container three-cols">
         <div class="row">
             <div class="col-md-6 left-col">
                 <h3 class="blog">BLOG</h3>
                 <div class="row">
+                    <div class="col-md-12 image-article">
+                    <?php    
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
+}
 
-                   
+  dynamic_sidebar( 'wForums' ); 
 
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
+console_log( "zsxdcasdcvas" ); ?>
                     </div>
                 </div>
                 <div class="row">
