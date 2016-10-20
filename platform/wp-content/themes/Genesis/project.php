@@ -54,7 +54,9 @@
         </div>
     </section>
     <section class="container project">
+
         <div class="col-md-9">
+<?php get_search_form(); ?>
             <h1 class="title">Nombre del proyecto</h1>
             <h4 class="date-project">Octubre 10 de 2016</h4>
             <h3>Asesora en línea:</h3>
