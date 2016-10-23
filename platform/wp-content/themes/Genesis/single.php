@@ -21,7 +21,7 @@ get_header(); ?>
                     <li>
                         <a href="#">
                             <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="" width="38">
-                            <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>
+                            <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>12
                         </a>
                     </li>
                     <li>

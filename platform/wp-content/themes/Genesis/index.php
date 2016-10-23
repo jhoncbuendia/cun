@@ -55,9 +55,17 @@
     <section class="container" id="knowledges-lines">
         <div class="row">
             <?php
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
+}
+
                 $knowledgesLines = get_post( 106 );
                 $contentPost = $knowledgesLines->post_content;
                 echo $contentPost;
+                
+console_log( $contentPost );
             ?>
         </div>
     </section>

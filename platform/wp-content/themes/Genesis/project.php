@@ -13,37 +13,37 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/ciencias-exactas-socioculturales/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="" width="38">
                                 <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/ciencias-exactas-y-especificas-y-educacion-ambiental/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red2.png" alt="" width="38">
                                 <span>CIENCIAS EXACTAS<br>Y ESPECÍFICAS Y <br>EDUCACIÓN AMBIENTAL</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/tecnologia-e-innovacion/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red3.png" alt="" width="38">
                                 <span>TECNOLOGÍAS<br>E INNOVACCIÓN</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/lenguaje-y-educacion-artistica/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red4.png" alt="" width="38">
                                 <span>LENGUAJE, EDUCACIÓN<br>Y ARTÍSTICA</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/educacion-y-pedagogia/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red5.png" alt="" width="38">
                                 <span>EDUCACIÓN<br>Y PEDAGOGÍA</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="http://54.149.34.85/cun/platform/emprendimiento/">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/red6.png" alt="" width="38">
                                 <span>EMPRENDIMIENTO</span>
                             </a>

@@ -26,9 +26,9 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li>
-                        <a href="#">
+                        <a href="http://54.149.34.85/cun/platform/ciencias-exactas-socioculturales/">
                             <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="" width="38">
-                            <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>
+                          <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>13
                         </a>
                     </li>
                     <li>
