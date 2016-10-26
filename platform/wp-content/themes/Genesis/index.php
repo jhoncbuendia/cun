@@ -22,15 +22,22 @@
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner.png" alt="...">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner1.jpg" alt="Vive la CUN, vive la U">
                 </div>
                 <div class="item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner.png" alt="...">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner2.jpg" alt="Vive la CUN, vive la U">
+                </div>
+                <div class="item">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner3.jpg" alt="Vive la CUN, vive la U">
+                </div>
+                <div class="item">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/banner4.jpg" alt="Vive la CUN, vive la U">
                 </div>
             </div>
 
@@ -47,204 +54,59 @@
     </section>
     <section class="container" id="knowledges-lines">
         <div class="row">
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="">
-                <h5>CIENCIEAS EXACTAS SOCIOCULTURALES</h5>
+            <?php wp_nav_menu( array( 'theme_location' => 'menu-knowlege', 'menu_class' =>  'nav navbar-nav', 'container' => 'ul') ); ?>
+        </div>
+    </section>
+    <section class="container three-cols">
+        <div class="row">
+            <div class="col-md-6 left-col">
+                <h3 class="title news">NOTICIAS</h3>
+                <div class="row">
+                <?php
+                    $args = array( 'posts_per_page' => 3, 'offset'=> 0, 'category' => 'Noticias' );
+
+                    $myposts = get_posts( $args );
+                    foreach ( $myposts as $post ) : setup_postdata( $post );
+                ?>
+                    <div class="col-md-4 image-article">
+                    <?php 
+                        if ( has_post_thumbnail() ) {
+                            the_post_thumbnail(array(150, 153));
+                        }
+                    ?>
+                    </div>
+                    <div class="col-md-8 content-article">
+                        <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                        <content>
+                            <?php the_excerpt(); ?>
+                        </content>
+                        <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
+                    </div>
+                <?php endforeach; 
+                    wp_reset_postdata();
+                ?>
+                </div>
             </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red2.png" alt="">
-                <h5>CIENCIEAS EXACTAS Y ESPECÍFICAS Y EDUCACIÓN AMBIENTAL</h5>
+            <div class="col-md-3 middle-col">
+                <?php dynamic_sidebar( 'home_events' ); ?>
             </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red3.png" alt="">
-                <h5>TECNOLOGÍAS E INNOVACCIÓN</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red4.png" alt="">
-                <h5>EDUCACIÓN Y PEDAGOGÍA</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red5.png" alt="">
-                <h5>LENGUAJE, EDUCACIÓN Y ARTÍSTICA</h5>
-            </div>
-            <div class="col-md-2">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/red6.png" alt="">
-                <h5>EMPRENDIMIENTO</h5>
+            <div class="col-md-3 right-col">
+                <h3 class="title twitter">TWITTER</h3>
+                <?php dynamic_sidebar( 'social_networks' ); ?>
             </div>
         </div>
     </section>
     <section class="container three-cols">
         <div class="row">
             <div class="col-md-6 left-col">
-                <h3 class="news">NOTICIAS</h3>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
+            <?php dynamic_sidebar( 'forum_blog' ); ?>
             </div>
             <div class="col-md-3 middle-col">
-                <h3 class="calendar">CALENDARIO</h3>
+                <?php dynamic_sidebar( 'last_comments' ); ?>
             </div>
             <div class="col-md-3 right-col">
-                <h3 class="twitter">TWITTER</h3>
+                <?php dynamic_sidebar( 'login_home' ); ?>
             </div>
         </div>
     </section>
-    <section class="container three-cols">
-        <div class="row">
-            <div class="col-md-6 left-col">
-                <h3 class="blog">BLOG</h3>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 image-article">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/article.png" alt="">
-                    </div>
-                    <div class="col-md-8 content-article">
-                        <h5 class="title-article">Lorem ipsum dolor sit amet</h5>
-                        <content>
-                            Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. Maecenas vel gravida lectus.
-                        </content>
-                        <a href="#nogo" class="know-more">CONOCER MÁS</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 middle-col">
-                <h3 class="comments">COMENTARIOS RECIENTES</h3>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 right-col">
-                <h3 class="login">LOGIN</h3>
-                <div class="row">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre Usuario</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                            <input type="checkbox"> Recordarme
-                            </label>
-                        </div>
-                        <a href="#nogo">Olvide contraseña</a>
-                        <button type="submit" class="btn btn-default">Entrar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-<?php
-    get_footer();
-?>
+<?php get_footer(); ?>

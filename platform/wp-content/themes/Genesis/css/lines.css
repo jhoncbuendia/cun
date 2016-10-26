@@ -58,6 +58,8 @@ h3.title.login {
 }
 .change-line .dropdown-menu li a img {
   margin-right: 10px;
+  width: 38px;
+  height: 38px;
 }
 .change-line .dropdown-menu li a span {
   display: inline-block;
@@ -107,6 +109,11 @@ h3.title.login {
 }
 .last-comments content p {
   line-height: 13px;
+}
+.line-banner{
+  padding-right: 0px;
+  padding-left: 0px;
+  height: 496px;
 }
 .line-banner img {
   width: 100%;
@@ -158,5 +165,8 @@ h3.title.login {
   max-width: 108px;
 }
 .proyects .search-proyects .know-more {
-  float: left;
+  float: none;
+  display: block;
+  margin: 0px 0 30px;
+  max-width: 130px;
 }

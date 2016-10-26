@@ -1,18 +1,5 @@
 <?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * e.g., it puts together the home page when no home.php file exists.
- *
- * Learn more: {@link https://codex.wordpress.org/Template_Hierarchy}
- *
- * @package WordPress
- * @subpackage Genesis
- * @since Genesis 1.0
- */
+/* Template Name: Proyecto */
     get_header();
 ?>
 <section class="container navigation-options">
@@ -24,44 +11,7 @@
                         CAMBIAR RED <img src="<?php echo get_template_directory_uri(); ?>/images/little-cow.png" alt="">
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red1.png" alt="" width="38">
-                                <span>CIENCIEAS EXACTAS<br>SOCIOCULTURALES</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red2.png" alt="" width="38">
-                                <span>CIENCIAS EXACTAS<br>Y ESPECÍFICAS Y <br>EDUCACIÓN AMBIENTAL</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red3.png" alt="" width="38">
-                                <span>TECNOLOGÍAS<br>E INNOVACCIÓN</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red4.png" alt="" width="38">
-                                <span>LENGUAJE, EDUCACIÓN<br>Y ARTÍSTICA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red5.png" alt="" width="38">
-                                <span>EDUCACIÓN<br>Y PEDAGOGÍA</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/red6.png" alt="" width="38">
-                                <span>EMPRENDIMIENTO</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <?php wp_nav_menu( array( 'theme_location' => 'menu-knowlege-all', 'menu_class' =>  'dropdown-menu', 'container' => 'ul') ); ?>
                 </div>
             </div>
         </div>
