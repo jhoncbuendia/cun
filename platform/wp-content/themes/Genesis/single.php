@@ -31,8 +31,6 @@ get_header(); ?>
         <div class="col-md-9">
             <h1 class="title"><?php the_title(); ?></h1>
             <h4 class="date-project"><?php the_date(); ?></h4>
-            <h3>Asesora en línea:</h3>
-            <h3 class="name-adviser">Karina Bravo</h3>
             <article>
                 <?php the_content(); ?> 
             </article>

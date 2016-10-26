@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Proyecto */
+/* Template Name: General */
     get_header();
 ?>
 <section class="container navigation-options">
@@ -23,7 +23,7 @@
                 get_template_part( 'template-parts/content', 'single' );
             ?>
             <h1 class="title"><?php the_title(); ?></h1>
-            <h4 class="date-project">Octubre 10 de 2016</h4>
+            <h4 class="date-project">the_date();</h4>
             <h3>Asesora en línea:</h3>
             <h3 class="name-adviser">Karina Bravo:</h3>
             <article>
@@ -32,106 +32,9 @@
             <?php endwhile; ?>
         </div>
         <div class="col-md-3 inline-users">
+            <?php dynamic_sidebar( 'online_users' ); ?>
             <div class="row">
-                <h3 class="title online">USUARIOS EN LÍNEA</h3>
-                <div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 name-user">
-                        SANTIAGO TORRES
-                    </div>
-                </div>
-                <div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 name-user">
-                        SANTIAGO TORRES
-                    </div>
-                </div>
-                <div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 name-user">
-                        SANTIAGO TORRES
-                    </div>
-                </div>
-                <div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 name-user">
-                        SANTIAGO TORRES
-                    </div>
-                </div>
-                <div class="row the-users">
-                    <div class="col-md-2 image-profile">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-8 name-user">
-                        SANTIAGO TORRES
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <h3 class="title comments">COMENTARIOS RECIENTES</h3>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
-                <div class="row last-comments">
-                    <div class="col-md-3 profile-image">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/profile.jpg" alt="">
-                    </div>
-                    <div class="col-md-9">
-                        <h6>FRANK TORRES</h6>
-                        <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
-                    </div>
-                </div>
+                <?php dynamic_sidebar( 'last_comments' ); ?>
             </div>
         </div>
     </section>
