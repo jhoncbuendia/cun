@@ -21,13 +21,13 @@
     <header class="container">
         <div class="row">
             <div class="col-md-3">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Génesis Córdoba" class="logo">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Génesis Córdoba" class="logo"></a>
             </div>
             <div class="col-md-5 col-md-offset-4">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/logo-cun.png" alt="CUN" class="logo-cun">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/g+.png" alt="" class="social-icons">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/fb.png" alt="" class="social-icons">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/tw.png" alt="" class="social-icons">
+                <a href="https://www.facebook.com/Proyecto-G%C3%A9nesis-C%C3%B3rdoba-1410228575956082/"><img src="<?php echo get_template_directory_uri(); ?>/images/fb.png" alt="" class="social-icons"></a>
+                <a href="https://twitter.com/GenesisCordoba"><img src="<?php echo get_template_directory_uri(); ?>/images/tw.png" alt="" class="social-icons"></a>
                 <img src="<?php echo get_template_directory_uri(); ?>/images/in.png" alt="" class="social-icons">
             </div>
         </div>

@@ -17,7 +17,7 @@
 ?>
     <section class="container">
         <?php 
-            echo do_shortcode("[metaslider id=147]"); 
+            echo do_shortcode("[metaslider id=133]"); 
         ?>
     </section>
     <section class="container" id="knowledges-lines">
