@@ -15,22 +15,30 @@ function making_project_setup_menu(){
   add_menu_page( 'Making Project Page', 'Mis Proyectos', 'manage_options', 'test-plugin', 'test_init' );
 }
 function test_init(){
+  function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
   if (!empty($_POST)) {
     $user = wp_get_current_user();
-    $contenido = "<p>Integrantes:<span>" + $_POST["nmIntegrantes"] + "</span></p>
-    <p style='text-align: center;'><span style='text-decoration: underline;'>Red de Conocimiento</span></p>
-    <p style='text-align: left;'><span>"+ $_POST["selectbasic"]+"</span></p>
-    <p style='text-align: center;'><span style='text-decoration: underline;'>Planteamiento del Problema</span></p>
-                             <p><span>" + $_POST['txtplanproblema'] + "</span></p>
-                             <p style='text-align: center;'><span style='text-decoration: underline;'><span>Objetivos</span></span></p>
-                             <p style='text-align: left;'>General</p>
-                             <ul>
-                             <li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>
-                             </ul>
-                             <p style='text-align: left;'>Especificos</p>
-                             <ul>
-                              <li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>
-                              </ul>";
+    $contenido = "<p>Integrantes:<span>" + $_POST['nmIntegrantes'] + "</span></p>";
+    $contenido .="<p style='text-align: center;'><span style='text-decoration: underline;'>Red de Conocimiento</span></p>";
+    $contenido .="<p style='text-align: left;'><span>"+ $_POST['selectbasic']+"</span></p>";
+    $contenido .="<p style='text-align: center;'><span style='text-decoration: underline;'>Planteamiento del Problema</span></p>";
+    $contenido .="<p><span>" + $_POST['txtplanproblema'] + "</span></p>";
+    $contenido .="<p style='text-align: center;'><span style='text-decoration: underline;'><span>Objetivos</span></span></p>";
+    $contenido .="<p style='text-align: left;'>General</p>";
+    $contenido .="<ul>";
+    $contenido .="<li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>";
+    $contenido .="</ul>";
+    $contenido .="<p style='text-align: left;'>Especificos</p>";
+    $contenido .="<ul>";
+    $contenido .="<li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>";
+    $contenido .="</ul>";
+
+    console_log( $contenido ); // [1,2,3]
 
     $my_post = array(
       'post_title'    => wp_strip_all_tags( $_POST['nmProyecto'] ),
@@ -42,6 +50,11 @@ function test_init(){
 
     // Insert the post into the database
     $post_id = wp_insert_post( $my_post, $wp_error );
+
+    if($post_id =! null)
+    {
+      echo ("Proyecto Guardado Exitosamente");
+    }
   }
   else   {
     ?>
@@ -59,14 +72,6 @@ function test_init(){
           <label class="col-md-4 control-label" for="nmProyecto">Título de investigación</label>
           <div class="col-md-6">
             <textarea class="form-control" style="width:50%;" id="nmProyecto" name="nmProyecto"></textarea>
-          </div>
-        </div>
-
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="nmIntegrantes">Integrantes</label>
-          <div class="col-md-6">
-            <textarea class="form-control" style="width:50%;" id="nmIntegrantes" name="nmIntegrantes"></textarea>
           </div>
         </div>
 
@@ -106,110 +111,110 @@ function test_init(){
 
         <!-- Text input-->
         <!--<div class="form-group">
-          <label class="col-md-4 control-label" for="txtGrupo">Grupo de Investigación</label>
-          <div class="col-md-6">
-            <select id="txtGrupo" name="txtGrupo" class="form-control">
-              <option value="-1"></option>
-              <?php
-              $vgroups = $groups = BP_Groups_Group::get(array(
-                'type'=>'alphabetical',
-                'per_page'=>999
-              ));
-              $longitud = count($vgroups['groups']);
+        <label class="col-md-4 control-label" for="txtGrupo">Grupo de Investigación</label>
+        <div class="col-md-6">
+        <select id="txtGrupo" name="txtGrupo" class="form-control">
+        <option value="-1"></option>
+        <?php
+        $vgroups = $groups = BP_Groups_Group::get(array(
+        'type'=>'alphabetical',
+        'per_page'=>999
+      ));
+      $longitud = count($vgroups['groups']);
 
-              for ($i=0; $i < $longitud; $i++) {
-                $var = $vgroups['groups'][$i];?>
-                <option><?=$var->name?></option>
-                <?php }
-
-
-                ?>
+      for ($i=0; $i < $longitud; $i++) {
+      $var = $vgroups['groups'][$i];?>
+      <option><?=$var->name?></option>
+      <?php }
 
 
-              </select>
-
-            </div>
-          </div>-->
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="nmMetodolo">Metodologia</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="nmMetodolo" name="nmMetodolo"></textarea>
-            </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtDocente">Docente Coo-Investigador</label>
-            <div class="col-md-6">
-              <input id="txtDocente" style="width:50%;" name="txtDocente" placeholder="" class="form-control input-md" type="text">
-
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtIntegrantes">Integrantes</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtIntegrantes" name="txtIntegrantes "></textarea>
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtplanproblema">Planteamiento del Problema</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtplanproblema" name="txtplanproblema"></textarea>
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtObjetivoG">Objetivos Generales</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtObjetivoG" name="txtObjetivoG"></textarea>
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtObjetivoE">Objetivos Especificos</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtObjetivoE" name="txtObjetivoE"></textarea>
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtResultados">Resultados</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtResultados" name="txtResultados"></textarea>
-            </div>
-          </div>
-
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="txtbibliografia">bibliografía</label>
-            <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtbibliografia" name="txtbibliografia"></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="test_upload_pdf">Imagenes</label>
-            <div class="col-md-6">
-              <input type='file' id='test_upload_pdf' name='test_upload_pdf' multiple></input>
-            </div>
-          </div>
-
-        </fieldset>
+      ?>
 
 
-        <?php submit_button('Guardar') ?>
-      </form>
-      <?php
-    }
-  }
+    </select>
+
+  </div>
+</div>-->
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nmMetodolo">Metodologia</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="nmMetodolo" name="nmMetodolo"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtDocente">Docente Coo-Investigador</label>
+  <div class="col-md-6">
+    <input id="txtDocente" style="width:50%;" name="txtDocente" placeholder="" class="form-control input-md" type="text">
+
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtIntegrantes">Integrantes</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtIntegrantes" name="txtIntegrantes "></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtplanproblema">Planteamiento del Problema</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtplanproblema" name="txtplanproblema"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtObjetivoG">Objetivos Generales</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtObjetivoG" name="txtObjetivoG"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtObjetivoE">Objetivos Especificos</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtObjetivoE" name="txtObjetivoE"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtResultados">Resultados</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtResultados" name="txtResultados"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="txtbibliografia">bibliografía</label>
+  <div class="col-md-6">
+    <textarea class="form-control" style="width:50%;" id="txtbibliografia" name="txtbibliografia"></textarea>
+  </div>
+</div>
+
+<!-- <div class="form-group">
+<label class="col-md-4 control-label" for="test_upload_pdf">Imagenes</label>
+<div class="col-md-6">
+<input type='file' id='test_upload_pdf' name='test_upload_pdf' multiple></input>
+</div>
+</div> -->
+
+</fieldset>
 
 
-  ?>
+<?php submit_button('Guardar') ?>
+</form>
+<?php
+}
+}
+
+
+?>
