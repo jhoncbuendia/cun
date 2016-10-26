@@ -1,0 +1,232 @@
+#item-header{
+  height: 340px;
+}
+#cover-image-container{
+  background: url("../images/cover.jpg") #eaeaea;
+  height: 252px;
+}
+#item-header-avatar{
+  width: 20%;
+  position: relative;
+  top: 165px;
+}
+#item-header-avatar a{
+  border-radius: 50%;
+  display: block;
+  border: 4px solid #FFF;
+  overflow: hidden;
+  margin: auto;
+  max-width: 150px;
+  height: 150px;
+}
+#item-header-avatar, #item-header-content{
+  display: inline-block;
+  vertical-align: top;
+}
+#item-header-content{
+  position: relative;
+  top: 190px;
+  width: 80%;
+  margin-left: -5px;
+}
+#item-header-content #item-meta{
+  color: #FFF;
+  margin-top: 20px;
+}
+#item-header-cover-image #item-actions{display: none;}
+.user-nicename{
+  font-size: 18px;
+  position: relative;
+  top: 20px;
+  color: #FFF;
+}
+#item-buttons{
+  position: relative;
+  top: 12px;
+}
+.generic-button{
+  display: inline-block;
+  vertical-align: middle;
+  width: 33.33333333%;
+  text-align: center;
+  height: 100%;
+  padding: 15px 0;
+  background-color: #eeeeee;
+}
+#item-header-content .activity{
+  top: 20px;
+  position: relative;
+}
+#item-nav .item-list-tabs ul,
+#item-body  .item-list-tabs ul{
+  padding: 0;
+}
+#item-nav .item-list-tabs ul li{
+  width: 12.5%;
+}
+#item-body  .item-list-tabs ul li{
+  width: 16.666666666666667%;
+  margin-left: -5px;
+}
+#item-nav .item-list-tabs ul li,
+#item-body  .item-list-tabs ul li{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  text-align: center;
+  background-color: #eeeeee;
+  padding: 18px 0;
+}
+#item-body  .item-list-tabs ul li select{
+  width: 90%;
+}
+.item-list-tabs #activity-filter-select,
+#groups-order-select,
+#members-order-select,
+#group_members-order-select{
+  margin-left: -5px;
+  background-color: transparent !important;
+}
+#whats-new-form #whats-new-avatar, #whats-new-form .activity-greeting{
+  display: inline-block;
+  vertical-align: middle;
+}
+#whats-new-form #whats-new-avatar{
+  width: 50px;
+  margin-right: 20px;
+}
+#whats-new-textarea label{
+  display: block;
+  margin: 30px 0 10px;
+}
+#whats-new-textarea textarea{
+  width: 100%;
+  height: 50px;
+}
+#whats-new-options #whats-new-submit{
+  margin: 20px 0;
+}
+#activity-stream{
+  padding: 0;
+  margin-top: 30px;
+}
+#activity-stream >li, #groups-list>li{
+  background-color: #efefef;
+  padding: 7px;
+  list-style: none;
+}
+.activity-avatar, .activity-content,
+#groups-list>li .item-avatar, #groups-list>li .item{
+  display: inline-block;
+  vertical-align: top;
+}
+.activity-avatar,
+#groups-list>li .item-avatar{
+  width: 50px;
+}
+.activity-content,
+#groups-list>li .item{
+    width: 90%;
+    margin-left: 20px;
+}
+.activity-header p{font-size: 12px;}
+.activity-header p a:first-child,
+#groups-list>li .item-title a{
+  text-transform: uppercase;
+  font-family: 'Gotham-Bold';
+  color: #3d3d3d;
+}
+.activity-header p a img{margin: 0 5px;}
+.activity-meta{
+  font-size: 12px;
+}
+.activity-meta a{
+  margin-right: 10px;
+}
+.groups.created_group{
+  border-bottom: 1px solid #a4a8b7;
+  margin: 5px 0;
+}
+.groups.created_group .ac-reply-avatar{
+  margin-top: 20px;
+}
+.activity-comments .ac-reply-content .ac-textarea textarea{
+  width: 100%;
+}
+.activity-comments .ac-reply-content .ac-textarea label{
+  display: block;
+  margin-top: 10px;
+}
+#groups-list{
+  padding: 0;
+}
+#groups-list li{
+  margin-bottom: 10px;
+}
+#groups-list li .item .item-meta{
+  font-size: 12px;
+}
+#groups-list li .action{
+  margin-left: 75px;
+}
+.groups-members-search{
+  width: auto;
+  padding: 18px;
+}
+#item-body #group-settings-form{
+  margin-top: 30px;
+}
+#group-settings-form textarea{
+  width: 40%;
+  height: 100px;
+}
+#group-settings-form input[type=checkbox]{width: auto !important;}
+#group-settings-form input[type=file]{margin: 20px 0;}
+#item-body .standard-form{
+  margin-top: 10px;
+}
+#item-body .standard-form label{
+  display: block;
+  margin-top: 20px;
+}
+#item-body .standard-form input{width: 40%;}
+#item-body .standard-form .submit{margin-top: 30px;}
+#item-body .standard-form .submit input{height: 40px;}
+bp-template-notice.error{
+  text-align: right;
+  color: #ff3945;
+}
+#notifications-bulk-management .notifications{width: 100%;}
+#notifications-bulk-management .notifications th{
+  padding: 10px 0;
+  text-align: center;
+  font-family: 'Gotham-Bold';
+  text-transform: uppercase;
+}
+#notifications-bulk-management .notifications th input,
+#notifications-bulk-management .notifications td input{
+  margin-right: 10px;
+}
+#notifications-bulk-management .notifications tbody tr:nth-child(2n+1){
+  background-color: #efefef;
+}
+#notifications-bulk-management .notifications td{
+  padding: 10px 0;
+}
+#notifications-bulk-management .notifications .bulk-select-check{
+  padding-left: 10px;
+}
+#notifications-bulk-management .notifications .notification-description,
+#notifications-bulk-management .notifications .notification-actions,
+#notifications-bulk-management .notifications .notification-since{
+  font-size: 12px;
+}
+#notifications-bulk-management .notifications .notification-description{
+  max-width: 380px;
+}
+#notifications-bulk-management .notifications-options-nav{
+  margin-top: 30px;
+}
+#notifications-bulk-management .notifications-options-nav input[type=submit]{
+  margin-left: 30px;
+}
