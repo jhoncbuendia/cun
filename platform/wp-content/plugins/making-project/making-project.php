@@ -17,10 +17,24 @@ function making_project_setup_menu(){
 function test_init(){
   if (!empty($_POST)) {
     $user = wp_get_current_user();
-    $urlProy = site_url();
+    $contenido = "<p>Integrantes:<span>" + $_POST["nmIntegrantes"] + "</span></p>
+    <p style='text-align: center;'><span style='text-decoration: underline;'>Red de Conocimiento</span></p>
+    <p style='text-align: left;'><span>"+ $_POST["selectbasic"]+"</span></p>
+    <p style='text-align: center;'><span style='text-decoration: underline;'>Planteamiento del Problema</span></p>
+                             <p><span>" + $_POST['txtplanproblema'] + "</span></p>
+                             <p style='text-align: center;'><span style='text-decoration: underline;'><span>Objetivos</span></span></p>
+                             <p style='text-align: left;'>General</p>
+                             <ul>
+                             <li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>
+                             </ul>
+                             <p style='text-align: left;'>Especificos</p>
+                             <ul>
+                              <li style='text-align: left;'><span>" + $_POST['txtObjetivoG'] + "</span></li>
+                              </ul>";
+
     $my_post = array(
       'post_title'    => wp_strip_all_tags( $_POST['nmProyecto'] ),
-      'post_content'  => $_POST['txtplanproblema'],
+      'post_content'  => $contenido,
       'post_status'   => 'publish',
       'post_author'   => $user->ID,
       'post_type' => 'proyecto'
@@ -48,17 +62,26 @@ function test_init(){
           </div>
         </div>
 
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nmIntegrantes">Integrantes</label>
+          <div class="col-md-6">
+            <textarea class="form-control" style="width:50%;" id="nmIntegrantes" name="nmIntegrantes"></textarea>
+          </div>
+        </div>
+
+
         <div class="form-group">
           <label class="col-md-4 control-label" for="selectbasic">Red de conocimiento</label>
           <div class="col-md-6">
             <select id="selectbasic" name="selectbasic" class="form-control">
-              <option value="-1"></option>
-              <option value="1">CIENCIEAS EXACTAS SOCIOCULTURALES</option>
-              <option value="2">CIENCIEAS EXACTAS Y ESPECÍFICAS Y EDUCACIÓN AMBIENTAL</option>
-              <option value="3">TECNOLOGÍAS E INNOVACCIÓN</option>
-              <option value="4">EDUCACIÓN Y PEDAGOGÍA</option>
-              <option value="5">LENGUAJE, EDUCACIÓN Y ARTÍSTICA</option>
-              <option value="6">EMPRENDIMIENTO</option>
+              <option value=""></option>
+              <option value="CIENCIEAS EXACTAS SOCIOCULTURALES">CIENCIEAS EXACTAS SOCIOCULTURALES</option>
+              <option value="24">CIENCIEAS EXACTAS Y ESPECÍFICAS Y EDUCACIÓN AMBIENTAL</option>
+              <option value="25">TECNOLOGÍAS E INNOVACCIÓN</option>
+              <option value="26">EDUCACIÓN Y PEDAGOGÍA</option>
+              <option value="27">LENGUAJE, EDUCACIÓN Y ARTÍSTICA</option>
+              <option value="28">EMPRENDIMIENTO</option>
             </select>
           </div>
         </div>
@@ -82,7 +105,7 @@ function test_init(){
         </div>
 
         <!-- Text input-->
-        <div class="form-group">
+        <!--<div class="form-group">
           <label class="col-md-4 control-label" for="txtGrupo">Grupo de Investigación</label>
           <div class="col-md-6">
             <select id="txtGrupo" name="txtGrupo" class="form-control">
@@ -105,6 +128,13 @@ function test_init(){
 
               </select>
 
+            </div>
+          </div>-->
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="nmMetodolo">Metodologia</label>
+            <div class="col-md-6">
+              <textarea class="form-control" style="width:50%;" id="nmMetodolo" name="nmMetodolo"></textarea>
             </div>
           </div>
 
@@ -135,9 +165,17 @@ function test_init(){
 
           <!-- Textarea -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="txtObjetivo">Objetivo</label>
+            <label class="col-md-4 control-label" for="txtObjetivoG">Objetivos Generales</label>
             <div class="col-md-6">
-              <textarea class="form-control" style="width:50%;" id="txtObjetivo" name="txtObjetivo"></textarea>
+              <textarea class="form-control" style="width:50%;" id="txtObjetivoG" name="txtObjetivoG"></textarea>
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="txtObjetivoE">Objetivos Especificos</label>
+            <div class="col-md-6">
+              <textarea class="form-control" style="width:50%;" id="txtObjetivoE" name="txtObjetivoE"></textarea>
             </div>
           </div>
 
