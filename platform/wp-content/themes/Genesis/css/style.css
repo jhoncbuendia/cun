@@ -255,8 +255,8 @@ header .social-icons {
 }
 .image-article {
   padding-left: 0;
-  background: url("../images/cun-gris.png") no-repeat;
-  background-size: 100%;
+  background: url("../images/Genesis_Cordoba_Grises.png") no-repeat;
+  background-size: 80%;
   min-height: 100px;
   background-position: center;
 }
@@ -459,3 +459,14 @@ footer .info-footer p {
   font-size: 18px;
 }
 #bbpress-forums .wp-editor-container textarea.wp-editor-area{margin-bottom: 20px;}
+
+/*Twitter*/
+.tp_recent_tweets ul{
+  padding: 0px;
+}
+.tp_recent_tweets li{
+  list-style: none;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+  padding: 0 5px 10px 5px;
+}

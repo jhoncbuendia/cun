@@ -91,7 +91,6 @@
                 <?php dynamic_sidebar( 'home_events' ); ?>
             </div>
             <div class="col-md-3 right-col">
-                <h3 class="title twitter">TWITTER</h3>
                 <?php dynamic_sidebar( 'social_networks' ); ?>
             </div>
         </div>

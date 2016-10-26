@@ -18,18 +18,18 @@
     </section>
     <section class="container project">
         <div class="col-md-9">
-            <h1 class="title">Nombre del proyecto</h1>
+            <?php while ( have_posts() ) : the_post();
+                // Include the single post content template.
+                get_template_part( 'template-parts/content', 'single' );
+            ?>
+            <h1 class="title"><?php the_title(); ?></h1>
             <h4 class="date-project">Octubre 10 de 2016</h4>
             <h3>Asesora en línea:</h3>
             <h3 class="name-adviser">Karina Bravo:</h3>
             <article>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet. 
-                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. 
-                Maecenas vel gravida lectus, nec dapibus nibh. Nullam eget purus in purus pulvinar dictum vitae vel odio. <br><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet. 
-                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. 
-                Maecenas vel gravida lectus, nec dapibus nibh. Nullam eget purus in purus pulvinar dictum vitae vel odio. 
+                <?php the_content(); ?> 
             </article>
+            <?php endwhile; ?>
         </div>
         <div class="col-md-3 inline-users">
             <div class="row">
