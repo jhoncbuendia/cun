@@ -26,8 +26,8 @@
     <h1 class="title"><?php the_title(); ?></h1>
 </section>
 <section class="container line-description">
-    
-    <h2>Asesora en línea: <span><?php echo get_post_meta( get_the_ID(), 'asesor', true ); ?> </span></h2>
+
+    <h2>Asesora en línea: <span><?php echo get_user_by('id', get_post_meta(159, 'asesor', true ))->display_name ?> </span></h2>
     <p>
         <?php the_content(); ?>
     </p>
@@ -49,7 +49,7 @@
                 ?>
                     <div class="col-md-6">
                         <div class="col-md-4 image-article">
-                            <?php 
+                            <?php
                                 if ( has_post_thumbnail() ) {
                                     the_post_thumbnail(array(150, 153));
                                 }
@@ -63,7 +63,7 @@
                             <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
                         </div>
                     </div>
-                <?php endforeach; 
+                <?php endforeach;
                     wp_reset_postdata();
                 ?>
                 </div>
