@@ -4,7 +4,7 @@
 ?>
 <section class="container navigation-options">
         <div class="row">
-            <div class="col-md-6">Home > Redes del conocimiento > Proyectos > Ciencias Socioculturales </div>
+            <div class="col-md-6"><?php dynamic_sidebar( 'Breadcrumb' ); ?></div>
             <div class="col-md-6">
                 <div class="dropdown change-line">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -27,7 +27,7 @@
             <h3>Asesora en línea:</h3>
             <h3 class="name-adviser">Karina Bravo:</h3>
             <article>
-                <?php the_content(); ?> 
+                <?php the_content(); ?>
             </article>
             <?php endwhile; ?>
         </div>
