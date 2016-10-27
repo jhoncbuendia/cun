@@ -349,16 +349,17 @@ class Decent_Comments_Renderer {
 			}
 
 			$output .= '<div class="decent-comments">';
-			$output .= '<ul>';
+			$output .= '<div>';
 
 			foreach ( $comments as $comment) {
 
-				$output .= '<li>';
+				$output .= '<div>';
 
 				$output .= '<div class="row comment">';
 
-				if ( $show_avatar ) {
-					$output .= '<span class="comment-avatar col-md-3 profile-image">';
+				$output .= '<div class="col-md-4">';
+					if ( $show_avatar ) {
+					$output .= '<span class="comment-avatar">';
 					$comment_author_url = get_comment_author_url( $comment->comment_ID );
 					if ( !empty( $comment_author_url ) && $link_author ) {
 						$output .= '<a href="'. $comment_author_url . '" rel="external">';
@@ -369,14 +370,18 @@ class Decent_Comments_Renderer {
 					}
 					$output .= '</span>'; // .comment-avatar
 				}
-				$output .= '<div class="col-md-9">';				if ( $show_author ) {
-					$output .= '<h6 class="comment-author">';
+
+				$output .= '</div>';
+				$output .= '<div class="col-md-8">';
+
+				if ( $show_author ) {
+					$output .= '<span class="comment-author">';
 					if ( $link_author ) {
 						$output .= get_comment_author_link( $comment->comment_ID );
 					} else {
 						$output .= get_comment_author( $comment->comment_ID );
 					}
-					$output .= '</h6>'; // .comment-author
+					$output .= '</span>'; // .comment-author
 				}
 
 				if ( $show_date ) {
@@ -413,13 +418,13 @@ class Decent_Comments_Renderer {
 					$output .= '</span>'; // .comment-body or .comment-excerpt
 				}
 
-				$output .= '</div>'; // .col
-				$output .= '</div>'; // .comment
+				$output .= '</div>';
+				$output .= '</div> <hr/>'; // .comment
 
-				$output .= '</li>';
+				$output .= '</div>';
 			}
 
-			$output .= '</ul>';
+			$output .= '</div>';
 			$output .= '</div>'; // .decent-comments
  		}
 		return apply_filters( 'decent_comments_comments_output', $output, $comments, $options );

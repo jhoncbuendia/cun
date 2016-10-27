@@ -17,7 +17,7 @@
 ?>
 <section class="container navigation-options">
         <div class="row">
-            <div class="col-md-6">Home > Redes del conocimiento > Proyectos > Ciencias Socioculturales </div>
+            <div class="col-md-6"><?php dynamic_sidebar( 'Breadcrumb' ); ?></div>
             <div class="col-md-6">
                 <div class="dropdown change-line">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -73,12 +73,12 @@
             <h3>Asesora en línea:</h3>
             <h3 class="name-adviser">Karina Bravo:</h3>
             <article>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet. 
-                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet.
+                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus.
                 Maecenas vel gravida lectus, nec dapibus nibh. Nullam eget purus in purus pulvinar dictum vitae vel odio. <br><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet. 
-                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus. 
-                Maecenas vel gravida lectus, nec dapibus nibh. Nullam eget purus in purus pulvinar dictum vitae vel odio. 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum lectus ex, at sodales mauris hendrerit a. Ut efficitur commodo nisl, sed porttitor eros vestibulum sit amet.
+                Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc. Nullam luctus, magna a molestie lacinia, mi tortor mattis est, non egestas risus magna ut purus.
+                Maecenas vel gravida lectus, nec dapibus nibh. Nullam eget purus in purus pulvinar dictum vitae vel odio.
             </article>
         </div>
         <div class="col-md-3 inline-users">
@@ -134,8 +134,8 @@
                     <div class="col-md-9">
                         <h6>FRANK TORRES</h6>
                         <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
+                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>
+                        </content>
                     </div>
                 </div>
                 <div class="row last-comments">
@@ -145,8 +145,8 @@
                     <div class="col-md-9">
                         <h6>FRANK TORRES</h6>
                         <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
+                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>
+                        </content>
                     </div>
                 </div>
                 <div class="row last-comments">
@@ -156,8 +156,8 @@
                     <div class="col-md-9">
                         <h6>FRANK TORRES</h6>
                         <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
+                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>
+                        </content>
                     </div>
                 </div>
                 <div class="row last-comments">
@@ -167,8 +167,8 @@
                     <div class="col-md-9">
                         <h6>FRANK TORRES</h6>
                         <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
+                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>
+                        </content>
                     </div>
                 </div>
                 <div class="row last-comments">
@@ -178,8 +178,8 @@
                     <div class="col-md-9">
                         <h6>FRANK TORRES</h6>
                         <content>
-                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>    
-                        </content> 
+                            <p>Donec semper tortor finibus, fermentum odio sit amet, bibendum nunc.</p>
+                        </content>
                     </div>
                 </div>
             </div>
