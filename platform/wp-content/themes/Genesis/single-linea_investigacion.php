@@ -27,7 +27,7 @@
 </section>
 <section class="container line-description">
 
-    <h2>Asesora en línea: <span><?php echo get_user_by('id', get_post_meta(159, 'asesor', true ))->display_name ?> </span></h2>
+    <h2>Asesora en línea: <span><?php echo get_user_by('id', get_post_meta(get_the_ID(), 'asesor', true ))->display_name ?> </span></h2>
     <p>
         <?php the_content(); ?>
     </p>
