@@ -470,3 +470,115 @@ footer .info-footer p {
   border-bottom: 1px solid #eaeaea;
   padding: 0 5px 10px 5px;
 }
+/*Projects*/
+.rol-user {
+  margin-top: 20px;
+}
+.user-project {
+  font-family: 'Gotham-Bold';
+}
+.name-user {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gruop-title {
+  font-size: 4vh;
+}
+.content-proyect {
+  margin-right: 2%;
+  width: 73%;
+}
+.content-proyect .first-part {
+  background: #d73c47;
+}
+.content-proyect .second-part {
+  background: #f1a01b;
+}
+.content-proyect .third-part {
+  background: #6b1d63;
+}
+.content-proyect .second-part,
+.content-proyect .third-part {
+  padding-top: 40px;
+}
+.content-proyect .divided-content {
+  margin: 0;
+}
+.content-proyect .divided-content .left-content {
+  padding-left: 0;
+}
+.content-proyect .divided-content .right-content {
+  padding-right: 0;
+}
+.content-proyect .divided-content .right-content .item-project {
+  top: 35px;
+}
+.content-proyect .divided-content .right-content .item-project,
+.content-proyect .divided-content .right-content h5,
+.content-proyect .divided-content .right-content .logo-project {
+  border-radius: 20px 0px 0px 20px;
+}
+.content-proyect .divided-content .right-content h5 {
+  float: right;
+  top: 10px;
+}
+.content-proyect .divided-content .right-content .institution-project {
+  top: 35px;
+}
+.content-proyect h5 {
+  background-color: #0097dc;
+  color: #FFF;
+  border-radius: 0px 20px 20px 0px;
+  padding: 8px 0 8px 10px;
+  position: relative;
+  z-index: 2;
+  width: 80%;
+}
+.content-proyect .item-project {
+  background-color: #FFF;
+  color: #5b5b5f;
+  font-size: 20px;
+  border-radius: 0px 20px 20px 0px;
+  position: relative;
+  top: -25px;
+  padding: 40px 0px 20px 10px;
+  word-wrap: break-word;
+}
+.content-proyect .item-project h4 {
+  color: #434142;
+  font-family: 'Gotham-Bold';
+}
+.content-proyect .title-project {
+  color: #ff3945;
+  font-family: 'Gotham-Bold';
+  padding-right: 20px;
+}
+.content-proyect .logo-project {
+  min-height: 200px;
+  background: #FFF;
+  margin-top: 26px;
+  border-radius: 20px;
+}
+.content-proyect .logo-project img {
+  text-align: center;
+  vertical-align: middle;
+}
+.content-proyect .title-sections {
+  background-color: #e9721c;
+  font-size: 20px;
+  color: #FFF;
+  padding-left: 10px;
+  width: 50%;
+  border-radius: 0px 20px 20px 0px;
+  padding: 13px 0px 10px 10px;
+  position: relative;
+  z-index: 2;
+}
+.content-proyect article.item-project {
+  width: 95%;
+  margin: auto;
+  padding: 40px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+}
