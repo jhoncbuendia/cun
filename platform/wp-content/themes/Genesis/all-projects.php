@@ -25,6 +25,7 @@ get_header();
           <?php
           $args = array( 'post_type' => 'proyecto','posts_per_page' => - 1 );
 
+
           $myposts = get_posts( $args );
           foreach ( $myposts as $post ){
 	  ?>
@@ -35,6 +36,10 @@ get_header();
 		
               echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
               ?>
+                        
+                        
+                
+
             </div>
             <div class="col-md-8 content-article">
               <h5 class="title-article"><a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a></h5>
