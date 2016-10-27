@@ -166,6 +166,24 @@ h3.title.login {
   line-height: 13px;
 }
 /*DECENT COMMENTS*/
+.decent-comments div.row{
+  margin: 0;
+  background-color: #efefef;
+  margin-bottom: 10px;
+}
+.decent-comments .comment-avatar{
+  width: 69px;
+  height: 69px;
+  display: block;
+}
+.decent-comments .comment-avatar img{
+  width: 100%;
+  height: 100%;
+}
+.decent-comments .col-md-4{
+  padding-left: 7px;
+}
+.decent-comments hr{display: none;}
 .decent-comments ul{
   padding: 0;
 }
@@ -175,22 +193,22 @@ h3.title.login {
   margin: 0 0 10px 0;
   padding: 7px;
 }
-.decent-comments li .comment-author{
+.decent-comments .comment-author{
   font-family: 'Gotham-Bold';
   text-transform: uppercase;
   color: #3e3d3d;
 }
-.decent-comments li .comment-link{display: block;}
-.decent-comments li .comment-link,
-.decent-comments li .comment-link a{
+.decent-comments .comment-link{display: block;}
+.decent-comments .comment-link,
+.decent-comments .comment-link a{
   color: #3e3d3d;
 }
-.decent-comments li .comment-link a:hover{
+.decent-comments .comment-link a:hover{
   text-decoration: underline;
 }
-.decent-comments li .comment-link,
-.decent-comments li .comment-link a,
-.decent-comments li .comment-excerpt{
+.decent-comments .comment-link,
+.decent-comments .comment-link a,
+.decent-comments .comment-excerpt{
   font-size: 11px;
 }
 body {
@@ -261,7 +279,7 @@ header .social-icons {
   background-position: center;
 }
 .three-cols .content-article {
-  padding: 0px 15px 0 0;
+  padding: 0px 15px 30px 0;
 }
 .three-cols .title-article,
 .three-cols content {
@@ -581,4 +599,8 @@ footer .info-footer p {
   padding: 40px 20px;
   border-radius: 10px;
   font-size: 16px;
+}
+.comment-avatar img{
+  width: 100%;
+  height: 100%;
 }
