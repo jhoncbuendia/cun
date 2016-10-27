@@ -45,9 +45,9 @@ input[type=submit], input[type=button], button{
   padding: 0 10px;
 }
 h1.title{
-  color: #FFF;
+  /*color: #FFF;
   position: relative;
-  top: 337px;
+  top: 337px;*/
   font-size: 30px;
   text-align: center;
 }
@@ -490,6 +490,13 @@ footer .info-footer p {
   padding: 0 5px 10px 5px;
 }
 /*Projects*/
+.search-proyects .title-article{
+    max-height: 44px;
+    overflow: hidden;
+}
+.all-projects{
+  margin-top: 30px;
+}
 .rol-user {
   margin-top: 20px;
 }

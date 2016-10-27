@@ -43,7 +43,7 @@
                     $myposts = get_posts($args);
                     foreach ( $myposts as $post ){
                 ?>
-                    <div class="col-md-6">
+                    <div class="col-md-6 all-projects">
                         <div class="col-md-4 image-article">
                             <?php
                               $img = wp_get_attachment_image( get_post_meta($post->ID, 'img_proyecto', true ), array('150', '153'), "", array( "class" => "img-responsive" ) ));
