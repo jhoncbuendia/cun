@@ -23,7 +23,7 @@
                 get_template_part( 'template-parts/content', 'single' );
             ?>
             <h1 class="title"><?php the_title(); ?></h1>
-            <h4 class="date-project">the_date();</h4>
+            <h4 class="date-project"><?php the_date(); ?></h4>
             <h3>Asesora en línea:</h3>
             <h3 class="name-adviser">Karina Bravo:</h3>
             <article>
