@@ -23,28 +23,30 @@ get_header();
       <div class="col-md-12">
         <div class="row">
           <?php
-          $args = array( 'post_type' => 'proyecto' );
+          $args = array( 'post_type' => 'proyecto','posts_per_page' => - 1 );
 
           $myposts = get_posts( $args );
-          foreach ( $myposts as $post ) : setup_postdata( $post );
-          ?>
+          foreach ( $myposts as $post ){
+	  ?>
           <div class="col-md-6">
             <div class="col-md-4 image-article">
               <?php
-              $obji = get_post_meta(the_ID(), 'img_grupo', true );
-              echo wp_get_attachment_image($obji[1], array('120', '120'), "", array( "class" => "img-responsive" ) );
+              $obji = get_post_meta($post->ID, 'img_proyecto', false);
+		
+              echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
               ?>
             </div>
             <div class="col-md-8 content-article">
-              <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+              <h5 class="title-article"><a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a></h5>
               <content>
-                <?php echo excerpt(20); ?>
+                <?php echo $post->post_content; ?>
               </content>
-              <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
+              <a href="<?php echo $post->guid ?>" class="know-more">CONOCER MÁS</a>
             </div>
           </div>
-        <?php endforeach;
-        wp_reset_postdata();
+         <?php
+	}
+       
         ?>
       </div>
     </div>

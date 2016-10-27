@@ -38,7 +38,14 @@
                     <div class="col-md-6 right-content">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="logo-project"></div>
+                                <div class="logo-project">
+              <?php
+              $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
+		
+              echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+              ?>
+           
+				</div>
                             </div>
                         </div>
                         <div class="row">
