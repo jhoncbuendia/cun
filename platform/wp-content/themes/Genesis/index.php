@@ -78,7 +78,7 @@
                     <div class="col-md-8 content-article">
                         <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
                         <content>
-                            <?php the_excerpt(); ?>
+                            <?php echo excerpt(20); ?>
                         </content>
                         <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
                     </div>
