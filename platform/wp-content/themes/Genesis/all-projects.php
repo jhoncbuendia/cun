@@ -16,9 +16,20 @@
         </div>
     </div>
 </section>
-<?php while ( have_posts() ) : the_post();
+<?php
+
+  //while ( have_posts() ) : the_post();
     // Include the single post content template.
-    get_template_part( 'template-parts/content', 'single' );
+    //get_template_part( 'template-parts/content', 'single' );
+
+    $proyectos = get_posts(array('post_type' => 'proyecto'));
+
+    foreach ( $proyectos as $p ) {
+
+    }
+
+
+
 ?>
 <section class="container proyects">
     <div class="col-md-9 search-proyects">
@@ -27,30 +38,27 @@
             <div class="col-md-12">
                 <div class="row">
                 <?php
-                    $args = array( 'posts_per_page' => 4, 'offset'=> 0, 'category' => 'Ciencias Socioculturales' );
+                    $args = array('post_type' => 'proyecto');
 
-                    $myposts = get_posts( $args );
-                    foreach ( $myposts as $post ) : setup_postdata( $post );
+                    $myposts = get_posts($args);
+                    foreach ( $myposts as $post ){
                 ?>
                     <div class="col-md-6">
                         <div class="col-md-4 image-article">
                             <?php
-                                if ( has_post_thumbnail() ) {
-                                    the_post_thumbnail(array(150, 153));
-                                }
+                              $img = wp_get_attachment_image( get_post_meta($post->ID, 'img_proyecto', true ), array('150', '153'), "", array( "class" => "img-responsive" ) ));
                             ?>
                         </div>
                         <div class="col-md-8 content-article">
-                            <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                            <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php $post->post_title ?></a></h5>
                             <content>
-                                <?php echo excerpt(20); ?>
+                                <?php /*echo excerpt(20);*/ ?>
                             </content>
-                            <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
+                            <a href="<?php $post->gui ?>" class="know-more">CONOCER MÁS</a>
                         </div>
                     </div>
-                <?php endforeach;
-                    wp_reset_postdata();
-                ?>
+                <?php }
+                                    ?>
                 </div>
             </div>
         </div>
