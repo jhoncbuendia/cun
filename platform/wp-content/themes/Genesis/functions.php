@@ -158,13 +158,15 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
 add_filter( 'rwmb_meta_boxes', 'proyecto_register_meta_boxes' );
 function proyecto_register_meta_boxes( $meta_boxes ) {
 
-  $meta_boxes[] = array(
+  $meta_boxes[] =
+  array(
     'id'         => 'proyecto',
     'title'      => __( 'Contenido del Proyecto', 'textdomain' ),
     'post_types' => array('proyecto'),
     'context'    => 'normal',
     'priority'   => 'high',
-    'fields' => array(
+    'fields' =>
+    array(
       array(
 				'name'        => __( 'Post', 'your-prefix' ),
 				'id'          => 'post',
@@ -296,4 +298,76 @@ function proyecto_register_meta_boxes( $meta_boxes ) {
 
     return $meta_boxes;
   }
+
+  add_filter( 'rwmb_meta_boxes', 'sproyecto_register_meta_boxes' );
+  function sproyecto_register_meta_boxes( $meta_boxes ) {
+
+    $meta_boxes[] =
+    array(
+      'id'         => 'sproyecto',
+      'title'      => __( 'Contenido del Proyecto', 'textdomain' ),
+      'post_types' => array('proyecto'),
+      'context'    => 'side',
+      'priority'   => 'low',
+      'fields' =>
+      array(
+        array(
+          'name'        => __( 'Nombre del Grupo', 'your-prefix' ),
+          'id'          => 'nmgrupo',
+          'type'        => 'text',
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
+          // Placeholder
+          'placeholder' => __( 'Ingrese el Nombre del Grupo', 'your-prefix' ),
+          // Input size
+          'size'        => 30,
+          // Datalist
+          'datalist'    => array(
+            // Unique ID for datalist
+            'id'      => 'text_datalist',
+            // List of predefined options
+          ),
+        ),
+        array(
+          'name'        => __( 'Docente', 'your-prefix' ),
+          'id'          => 'docente',
+          'type'        => 'text',
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
+          // Placeholder
+          'placeholder' => __( 'Ingrese el Nombre del Docente', 'your-prefix' ),
+          // Input size
+          'size'        => 30,
+          // Datalist
+          'datalist'    => array(
+            // Unique ID for datalist
+            'id'      => 'text_datalist',
+            // List of predefined options
+          ),
+        ),
+        array(
+          'name'        => __( 'Alumnos', 'your-prefix' ),
+          'id'          => 'alumnos',
+          'type'        => 'text',
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => true,
+          // Placeholder
+          'placeholder' => __( 'Alumno', 'your-prefix' ),
+          // Input size
+          'size'        => 30,
+          // Datalist
+          'datalist'    => array(
+            // Unique ID for datalist
+            'id'      => 'text_datalist',
+            // List of predefined options
+          ),
+        ),
+        )
+      );
+
+      return $meta_boxes;
+    }
+
+
+
   ?>
