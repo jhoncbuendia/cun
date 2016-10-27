@@ -213,6 +213,21 @@ function proyecto_register_meta_boxes( $meta_boxes ) {
         'max_file_uploads' => 1,
       ),
       array(
+        'name'        => __( 'Institución Educativa', 'your-prefix' ),
+        'id'          => 'iEducativa',
+        'type'        => 'text',
+        // CLONES: Add to make the field cloneable (i.e. have multiple value)
+        'clone'       => false,
+        // Placeholder
+        'size'        => 30,
+        // Datalist
+        'datalist'    => array(
+          // Unique ID for datalist
+          'id'      => 'text_datalist',
+          // List of predefined options
+        ),
+      ),
+      array(
         'name'        => __( 'Municipio', 'your-prefix' ),
         'id'          => 'municipio',
         'type'        => 'text',
