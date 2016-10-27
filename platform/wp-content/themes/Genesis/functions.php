@@ -117,8 +117,51 @@
             $excerpt = implode(" ",$excerpt).'...';
         } else {
             $excerpt = implode(" ",$excerpt);
-        }	
+        }
         $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
         return $excerpt;
     }
+
+
+    add_filter( 'rwmb_meta_boxes', 'YOURPREFIX_register_meta_boxes' );
+    function YOURPREFIX_register_meta_boxes( $meta_boxes ) {
+      $prefix = 'rw_';
+      // 1st meta box
+      $args = array(
+        'role'         => 'asesor'
+      );
+
+      $blogusers = get_users( $args );
+      // Array of WP_User objects.
+      $optionsT = array();
+      for ($i=0; $i < count($blogusers); $i++) {
+        $optionsT[$blogusers[$i]->display_name] =  $blogusers[$i]->display_name;
+      }
+
+      $meta_boxes[] = array(
+        'id'         => 'personal',
+        'title'      => __( 'Asesor de la Red', 'textdomain' ),
+        'post_types' => array( 'linea_investigacion'),
+        'context'    => 'normal',
+        'priority'   => 'high',
+        'fields' => array(
+          array(
+            'name'        => esc_html__( 'Asesor', 'your-prefix' ),
+            'id'          => "{$prefix}select",
+            'type'        => 'select',
+            // Array of 'value' => 'Label' pairs for select box
+            /*'options'     => array(
+              'value1' => esc_html__( 'Label1', 'your-qqprefix' ),
+              'value2' => esc_html__( 'Label2', 'your-prefix' ),
+            ),*/
+            'options' => $optionsT,
+            // Select multiple values, optional. Default is false.
+            'multiple'    => false,
+            'placeholder' => esc_html__( 'Select an Item', 'your-prefix' ),
+          ),
+          )
+        );
+
+        return $meta_boxes;
+      }
 ?>
