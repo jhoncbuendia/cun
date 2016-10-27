@@ -123,8 +123,8 @@
     }
 
 
-    add_filter( 'rwmb_meta_boxes', 'YOURPREFIX_register_meta_boxes' );
-    function YOURPREFIX_register_meta_boxes( $meta_boxes ) {
+    add_filter( 'rwmb_meta_boxes', 'linea_investigacion_register_meta_boxes' );
+    function linea_investigacion_register_meta_boxes( $meta_boxes ) {
       $prefix = 'rw_';
       // 1st meta box
       $args = array(
@@ -141,13 +141,13 @@
       $meta_boxes[] = array(
         'id'         => 'personal',
         'title'      => __( 'Asesor de la Red', 'textdomain' ),
-        'post_types' => array( 'linea_investigacion'),
+        'post_types' => array('linea_investigacion'),
         'context'    => 'normal',
         'priority'   => 'high',
         'fields' => array(
           array(
             'name'        => esc_html__( 'Asesor', 'your-prefix' ),
-            'id'          => "{$prefix}select",
+            'id'          => "asesor",
             'type'        => 'select',
             // Array of 'value' => 'Label' pairs for select box
             /*'options'     => array(
