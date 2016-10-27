@@ -1,0 +1,51 @@
+/*@font-face {
+  font-family: 'Gotham-Book';
+  src: url('fonts/book/Gotham-Book.eot');
+  src: url('../fonts/book/Gotham-Book.woff2') format('woff2'), url('../fonts/book/Gotham-Book.woff') format('woff'), url('../fonts/book/Gotham-Book.ttf') format('truetype'), url('../fonts/book/Gotham-Book.svg#Gotham-Book') format('svg'), url('../fonts/book/Gotham-Book.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}*/
+body{
+  font-family: 'Gotham-Book';
+}
+#login{
+  width: 600px;
+}
+.genesisLogo{
+  margin-left: 50px;
+}
+#login img{vertical-align: middle}
+#login #loginform{
+  background: transparent;
+  box-shadow: none;
+}
+h3{
+  background-color: #ff7500;
+  color: #FFF;
+  height: 43px;
+  line-height: 43px;
+  text-align: center;
+}
+#login label, #login span{
+  text-align: left;
+  font-size: 21px;
+}
+.recover-pass{
+  text-align: right;
+  float: right
+}
+#login form p.submit{
+  display: block;
+  clear: both;
+  text-align: left;
+  float: left;
+  margin-top: 20px;
+}
+#login form p.submit input{
+  background-color: #0097dc;
+  border: none;
+  color: #FFF;
+  height: 31px;
+  min-width: 105px;
+  font-family: 'Gotham-Book';
+}
