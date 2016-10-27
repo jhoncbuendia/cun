@@ -103,6 +103,20 @@ function forumOrBlog() {
 }
 add_action( 'widgets_init', 'forumOrBlog' );
 
+function Breadcrumb() {
+
+  register_sidebar( array(
+    'name'          => 'Breadcrumb',
+    'id'            => 'breadcrumb',
+    'before_widget' => '<div class="widget-readcrumb">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="title readcrumb">',
+    'after_title'   => '</h3>',
+  ) );
+
+}
+add_action( 'widgets_init', 'Breadcrumb' );
+
 // Add styles to login page
 function my_login_stylesheet() {
   wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/style-login.css' );
@@ -168,7 +182,7 @@ function proyecto_register_meta_boxes( $meta_boxes ) {
     'fields' =>
     array(
       array(
-				'name'        => __( 'Post', 'your-prefix' ),
+				'name'        => __( 'Linea Investigacion', 'your-prefix' ),
 				'id'          => 'post',
 				'type'        => 'post',
 				// 'clone'       => true,

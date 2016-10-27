@@ -4,7 +4,8 @@
 ?>
 <section class="container navigation-options">
     <div class="row">
-        <div class="col-md-6">Home > Redes del conocimiento > Proyectos > Ciencias Socioculturales </div>
+        <div class="col-md-6"><?php dynamic_sidebar( 'Breadcrumb' ); ?></div>
+
         <div class="col-md-6">
             <div class="dropdown change-line">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -26,7 +27,7 @@
     <h1 class="title"><?php the_title(); ?></h1>
 </section>
 <section class="container line-description">
-    
+
     <h2>Asesora en línea: <span><?php echo get_post_meta( get_the_ID(), 'asesor', true ); ?> </span></h2>
     <p>
         <?php the_content(); ?>
@@ -49,7 +50,7 @@
                 ?>
                     <div class="col-md-6">
                         <div class="col-md-4 image-article">
-                            <?php 
+                            <?php
                                 if ( has_post_thumbnail() ) {
                                     the_post_thumbnail(array(150, 153));
                                 }
@@ -63,7 +64,7 @@
                             <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
                         </div>
                     </div>
-                <?php endforeach; 
+                <?php endforeach;
                     wp_reset_postdata();
                 ?>
                 </div>
