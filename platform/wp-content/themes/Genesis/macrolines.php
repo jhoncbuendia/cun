@@ -26,7 +26,8 @@
     <h1 class="title"><?php the_title(); ?></h1>
 </section>
 <section class="container line-description">
-    <h2>Asesora en línea: <span>Karina Bravo</span></h2>
+    
+    <h2>Asesora en línea: <span><?php echo get_post_meta( get_the_ID(), 'asesor', true ); ?> </span></h2>
     <p>
         <?php the_content(); ?>
     </p>
