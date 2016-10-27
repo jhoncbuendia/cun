@@ -99,7 +99,8 @@
                 <h3 class="title online gruop-title"><?php echo get_post_meta(get_the_ID(), 'nmgrupo', true ); ?></h3>
                 <div class="row the-users">
                     <div class="col-md-2 image-profile">
-                        <?php wp_get_attachment_image( get_post_meta($p->ID, 'img_proyecto', true ), array('700', '600'), "", array( "class" => "img-responsive" ) ); ?>
+                        <?php 
+echo wp_get_attachment_image(get_post_meta(get_the_ID(), 'img_grupo', true ), array('120', '120'), "", array( "class" => "img-responsive" ) ); ?>
                     </div>
                     <div class="col-md-8 name-user">
                         <h6 class="rol-user">Docente</h6>
