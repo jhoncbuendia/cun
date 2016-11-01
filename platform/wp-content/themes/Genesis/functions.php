@@ -1,6 +1,8 @@
 <?php
 add_theme_support( 'post-thumbnails' );
 
+//require_once('wp-content/plugins/wp-advanced-search-master/wpas.php');
+
 /**
 * Register Menu
 */
@@ -166,188 +168,75 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
       )
     );
 
-  return $meta_boxes;
-}
-
-add_filter( 'rwmb_meta_boxes', 'proyecto_register_meta_boxes' );
-function proyecto_register_meta_boxes( $meta_boxes ) {
-
-  $meta_boxes[] =
-  array(
-    'id'         => 'proyecto',
-    'title'      => __( 'Contenido del Proyecto', 'textdomain' ),
-    'post_types' => array('proyecto'),
-    'context'    => 'normal',
-    'priority'   => 'high',
-    'fields' =>
-    array(
-      array(
-				'name'        => __( 'Linea Investigacion', 'your-prefix' ),
-				'id'          => 'post',
-				'type'        => 'post',
-				// 'clone'       => true,
-				// 'multiple'    => true,
-				// Post type: string (for single post type) or array (for multiple post types)
-				'post_type'   => array( 'linea_investigacion' ),
-				// Default selected value (post ID)
-				'std'         => 1,
-				// Field type, either 'select' or 'select_advanced' (default)
-				'field_type'  => 'select_advanced',
-				// Placeholder
-				'placeholder' => __( 'Select an Item', 'your-prefix' ),
-				// Query arguments (optional). No settings means get all published posts
-				// @see https://codex.wordpress.org/Class_Reference/WP_Query
-				'query_args'  => array(
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-				),
-			),
-      array(
-        'id'               => 'img_grupo',
-        'name'             => __( 'Imágen grupo', 'your-prefix' ),
-        'type'             => 'image_advanced',
-        // Delete image from Media Library when remove it from post meta?
-        // Note: it might affect other posts if you use same image for multiple posts
-        'force_delete'     => true,
-        // Maximum image uploads
-        'max_file_uploads' => 1,
-      ),
-      array(
-        'name'        => __( 'Institución Educativa', 'your-prefix' ),
-        'id'          => 'iEducativa',
-        'type'        => 'text',
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'size'        => 30,
-        // Datalist
-        'datalist'    => array(
-          // Unique ID for datalist
-          'id'      => 'text_datalist',
-          // List of predefined options
-        ),
-      ),
-      array(
-        'name'        => __( 'Municipio', 'your-prefix' ),
-        'id'          => 'municipio',
-        'type'        => 'text',
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'placeholder' => __( 'Ingrese un Municipio', 'your-prefix' ),
-        // Input size
-        'size'        => 30,
-        // Datalist
-        'datalist'    => array(
-          // Unique ID for datalist
-          'id'      => 'text_datalist',
-          // List of predefined options
-        ),
-      ),
-      array(
-        'name'        => __( 'Planteamiento del Problema', 'your-prefix' ),
-        'id'          => 'pproblema',
-        'type'        => 'textarea',
-        // Default value (optional)
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'placeholder' => __( 'Planteamiento del Problema', 'your-prefix' ),
-        // Number of rows
-        'rows'        => 5,
-        // Number of columns
-        'cols'        => 5,
-      ),
-      array(
-				'name'        => __( 'Objetivos', 'your-prefix' ),
-				'id'          => 'objetivos',
-        'type'        => 'textarea',
-        // Default value (optional)
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => true,
-        // Number of rows
-        'rows'        => 3,
-        // Number of columns
-        'cols'        => 5,
-      ),
-      array(
-        'name'        => __( 'Metodologia', 'your-prefix' ),
-        'id'          => 'metodologia',
-        'type'        => 'textarea',
-        // Default value (optional)
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'placeholder' => __( 'Metodologia', 'your-prefix' ),
-        // Number of rows
-        'rows'        => 5,
-        // Number of columns
-        'cols'        => 5,
-      ),
-      array(
-        'name'        => __( 'Resultados', 'your-prefix' ),
-        'id'          => 'resultados',
-        'type'        => 'textarea',
-        // Default value (optional)
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'placeholder' => __( 'Resultados', 'your-prefix' ),
-        // Number of rows
-        'rows'        => 5,
-        // Number of columns
-        'cols'        => 5,
-      ),
-      array(
-        'name'        => __( 'Bibliografía', 'your-prefix' ),
-        'id'          => 'bibliografia',
-        'type'        => 'textarea',
-        // Default value (optional)
-        // CLONES: Add to make the field cloneable (i.e. have multiple value)
-        'clone'       => false,
-        // Placeholder
-        'placeholder' => __( 'Bibliografía', 'your-prefix' ),
-        // Number of rows
-        'rows'        => 3,
-        // Number of columns
-        'cols'        => 5,
-      ),
-      array(
-        'id'               => 'img_proyecto',
-        'name'             => __( 'Imagenes del Proyecto', 'your-prefix' ),
-        'type'             => 'image_advanced',
-        // Delete image from Media Library when remove it from post meta?
-        // Note: it might affect other posts if you use same image for multiple posts
-        'force_delete'     => true,
-        // Maximum image uploads
-        'max_file_uploads' => 3,
-      ),
-      )
-    );
-
     return $meta_boxes;
   }
 
-  add_filter( 'rwmb_meta_boxes', 'sproyecto_register_meta_boxes' );
-  function sproyecto_register_meta_boxes( $meta_boxes ) {
+  add_filter( 'rwmb_meta_boxes', 'proyecto_register_meta_boxes' );
+  function proyecto_register_meta_boxes( $meta_boxes ) {
 
     $meta_boxes[] =
     array(
-      'id'         => 'sproyecto',
+      'id'         => 'proyecto',
       'title'      => __( 'Contenido del Proyecto', 'textdomain' ),
       'post_types' => array('proyecto'),
-      'context'    => 'side',
-      'priority'   => 'low',
+      'context'    => 'normal',
+      'priority'   => 'high',
       'fields' =>
       array(
         array(
-          'name'        => __( 'Nombre del Grupo', 'your-prefix' ),
-          'id'          => 'nmgrupo',
+          'name'        => __( 'Linea Investigacion', 'your-prefix' ),
+          'id'          => 'post',
+          'type'        => 'post',
+          // 'clone'       => true,
+          // 'multiple'    => true,
+          // Post type: string (for single post type) or array (for multiple post types)
+          'post_type'   => array( 'linea_investigacion' ),
+          // Default selected value (post ID)
+          'std'         => 1,
+          // Field type, either 'select' or 'select_advanced' (default)
+          'field_type'  => 'select_advanced',
+          // Placeholder
+          'placeholder' => __( 'Select an Item', 'your-prefix' ),
+          // Query arguments (optional). No settings means get all published posts
+          // @see https://codex.wordpress.org/Class_Reference/WP_Query
+          'query_args'  => array(
+            'post_status'    => 'publish',
+            'posts_per_page' => - 1,
+          ),
+        ),
+        array(
+          'id'               => 'img_grupo',
+          'name'             => __( 'Imágen grupo', 'your-prefix' ),
+          'type'             => 'image_advanced',
+          // Delete image from Media Library when remove it from post meta?
+          // Note: it might affect other posts if you use same image for multiple posts
+          'force_delete'     => true,
+          // Maximum image uploads
+          'max_file_uploads' => 1,
+        ),
+        array(
+          'name'        => __( 'Institución Educativa', 'your-prefix' ),
+          'id'          => 'iEducativa',
           'type'        => 'text',
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
           'clone'       => false,
           // Placeholder
-          'placeholder' => __( 'Ingrese el Nombre del Grupo', 'your-prefix' ),
+          'size'        => 30,
+          // Datalist
+          'datalist'    => array(
+            // Unique ID for datalist
+            'id'      => 'text_datalist',
+            // List of predefined options
+          ),
+        ),
+        array(
+          'name'        => __( 'Municipio', 'your-prefix' ),
+          'id'          => 'municipio',
+          'type'        => 'text',
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
+          // Placeholder
+          'placeholder' => __( 'Ingrese un Municipio', 'your-prefix' ),
           // Input size
           'size'        => 30,
           // Datalist
@@ -358,38 +247,82 @@ function proyecto_register_meta_boxes( $meta_boxes ) {
           ),
         ),
         array(
-          'name'        => __( 'Docente', 'your-prefix' ),
-          'id'          => 'docente',
-          'type'        => 'text',
+          'name'        => __( 'Planteamiento del Problema', 'your-prefix' ),
+          'id'          => 'pproblema',
+          'type'        => 'textarea',
+          // Default value (optional)
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
           'clone'       => false,
           // Placeholder
-          'placeholder' => __( 'Ingrese el Nombre del Docente', 'your-prefix' ),
-          // Input size
-          'size'        => 30,
-          // Datalist
-          'datalist'    => array(
-            // Unique ID for datalist
-            'id'      => 'text_datalist',
-            // List of predefined options
-          ),
+          'placeholder' => __( 'Planteamiento del Problema', 'your-prefix' ),
+          // Number of rows
+          'rows'        => 5,
+          // Number of columns
+          'cols'        => 5,
         ),
         array(
-          'name'        => __( 'Alumnos', 'your-prefix' ),
-          'id'          => 'alumnos',
-          'type'        => 'text',
+          'name'        => __( 'Objetivos', 'your-prefix' ),
+          'id'          => 'objetivos',
+          'type'        => 'textarea',
+          // Default value (optional)
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
           'clone'       => true,
+          // Number of rows
+          'rows'        => 3,
+          // Number of columns
+          'cols'        => 5,
+        ),
+        array(
+          'name'        => __( 'Metodologia', 'your-prefix' ),
+          'id'          => 'metodologia',
+          'type'        => 'textarea',
+          // Default value (optional)
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
           // Placeholder
-          'placeholder' => __( 'Alumno', 'your-prefix' ),
-          // Input size
-          'size'        => 30,
-          // Datalist
-          'datalist'    => array(
-            // Unique ID for datalist
-            'id'      => 'text_datalist',
-            // List of predefined options
-          ),
+          'placeholder' => __( 'Metodologia', 'your-prefix' ),
+          // Number of rows
+          'rows'        => 5,
+          // Number of columns
+          'cols'        => 5,
+        ),
+        array(
+          'name'        => __( 'Resultados', 'your-prefix' ),
+          'id'          => 'resultados',
+          'type'        => 'textarea',
+          // Default value (optional)
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
+          // Placeholder
+          'placeholder' => __( 'Resultados', 'your-prefix' ),
+          // Number of rows
+          'rows'        => 5,
+          // Number of columns
+          'cols'        => 5,
+        ),
+        array(
+          'name'        => __( 'Bibliografía', 'your-prefix' ),
+          'id'          => 'bibliografia',
+          'type'        => 'textarea',
+          // Default value (optional)
+          // CLONES: Add to make the field cloneable (i.e. have multiple value)
+          'clone'       => false,
+          // Placeholder
+          'placeholder' => __( 'Bibliografía', 'your-prefix' ),
+          // Number of rows
+          'rows'        => 3,
+          // Number of columns
+          'cols'        => 5,
+        ),
+        array(
+          'id'               => 'img_proyecto',
+          'name'             => __( 'Imagenes del Proyecto', 'your-prefix' ),
+          'type'             => 'image_advanced',
+          // Delete image from Media Library when remove it from post meta?
+          // Note: it might affect other posts if you use same image for multiple posts
+          'force_delete'     => true,
+          // Maximum image uploads
+          'max_file_uploads' => 5,
         ),
         )
       );
@@ -397,6 +330,130 @@ function proyecto_register_meta_boxes( $meta_boxes ) {
       return $meta_boxes;
     }
 
-    add_shortcode('wpbsearch', 'get_search_form');
+    add_filter( 'rwmb_meta_boxes', 'sproyecto_register_meta_boxes' );
+    function sproyecto_register_meta_boxes( $meta_boxes ) {
 
-  ?>
+      $meta_boxes[] =
+      array(
+        'id'         => 'sproyecto',
+        'title'      => __( 'Contenido del Proyecto', 'textdomain' ),
+        'post_types' => array('proyecto'),
+        'context'    => 'side',
+        'priority'   => 'low',
+        'fields' =>
+        array(
+          array(
+            'name'        => __( 'Nombre del Grupo', 'your-prefix' ),
+            'id'          => 'nmgrupo',
+            'type'        => 'text',
+            // CLONES: Add to make the field cloneable (i.e. have multiple value)
+            'clone'       => false,
+            // Placeholder
+            'placeholder' => __( 'Ingrese el Nombre del Grupo', 'your-prefix' ),
+            // Input size
+            'size'        => 30,
+            // Datalist
+            'datalist'    => array(
+              // Unique ID for datalist
+              'id'      => 'text_datalist',
+              // List of predefined options
+            ),
+          ),
+          array(
+            'name'        => __( 'Docente', 'your-prefix' ),
+            'id'          => 'docente',
+            'type'        => 'text',
+            // CLONES: Add to make the field cloneable (i.e. have multiple value)
+            'clone'       => true,
+            // Placeholder
+            'placeholder' => __( 'Ingrese el Nombre del Docente', 'your-prefix' ),
+            // Input size
+            'size'        => 30,
+            // Datalist
+            'datalist'    => array(
+              // Unique ID for datalist
+              'id'      => 'text_datalist',
+              // List of predefined options
+            ),
+          ),
+          array(
+            'name'        => __( 'Alumnos', 'your-prefix' ),
+            'id'          => 'alumnos',
+            'type'        => 'text',
+            // CLONES: Add to make the field cloneable (i.e. have multiple value)
+            'clone'       => true,
+            // Placeholder
+            'placeholder' => __( 'Alumno', 'your-prefix' ),
+            // Input size
+            'size'        => 30,
+            // Datalist
+            'datalist'    => array(
+              // Unique ID for datalist
+              'id'      => 'text_datalist',
+              // List of predefined options
+            ),
+          ),
+          )
+        );
+
+        return $meta_boxes;
+      }
+
+      add_shortcode('wpbsearch', 'get_search_form');
+
+      function console_log( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+      }
+
+      function my_search_form() {
+        $args = array();
+        // Set default WP_Query
+        $args['wp_query'] = array( 'post_type' => array('proyecto'),
+        'orderby' => 'title',
+        'order' => 'ASC' );
+
+        $argsC = array(
+          'post_type'   => 'linea_investigacion',
+          'numberposts' => -1
+        );
+
+        $categorias = get_posts( $argsC );
+        foreach ($categorias as $key => $value) {
+          $tempid = $value->ID;
+          $temptitle = $value->post_title;
+          //array_push($arrayName, array( $tempid => $temptitle));
+          $offerArray[$tempid] = $temptitle;
+        }
+
+
+
+        $args['fields'][] = array( 'type' => 'meta_key',
+        'label' => 'Categoria',
+        'format' => 'select', 'meta_key' => 'post',
+        'values' => $offerArray
+      );
+
+
+      $args['fields'][] = array( 'type' => 'date',
+    'label' => 'Fecha de Publicación', 'date_type' => 'day', 'format' => 'date');
+
+      // Configure form fields
+      $args['fields'][] = array( 'type' => 'search',
+      'label' => 'Titulo Proyecto', 'compare' => 'LIKE');
+
+      $args['fields'][] = array( 'type' => 'meta_key',
+      'label' => 'Participantes',
+      'format' => 'text', 'meta_key' => 'alumnos',
+      'values' => array(), 'compare' => 'LIKE');
+
+      $args['fields'][] = array( 'type' => 'submit',
+      'class' => 'button',
+      'value' => 'Search' );
+
+      register_wpas_form('myform', $args);
+    }
+    add_action('init','my_search_form');
+
+    ?>
