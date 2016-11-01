@@ -278,7 +278,7 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
           'type'        => 'textarea',
           // Default value (optional)
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
-          'clone'       => false,
+          'clone'       => true,
           // Placeholder
           'placeholder' => __( 'Metodologia', 'your-prefix' ),
           // Number of rows
@@ -292,7 +292,7 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
           'type'        => 'textarea',
           // Default value (optional)
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
-          'clone'       => false,
+          'clone'       => true,
           // Placeholder
           'placeholder' => __( 'Resultados', 'your-prefix' ),
           // Number of rows
@@ -306,7 +306,7 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
           'type'        => 'textarea',
           // Default value (optional)
           // CLONES: Add to make the field cloneable (i.e. have multiple value)
-          'clone'       => false,
+          'clone'       => true,
           // Placeholder
           'placeholder' => __( 'Bibliografía', 'your-prefix' ),
           // Number of rows
@@ -323,6 +323,15 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
           'force_delete'     => true,
           // Maximum image uploads
           'max_file_uploads' => 5,
+        ),
+        array(
+          'id'    => 'oembed',
+          'name'  => __( 'oEmbed(s)', 'your-prefix' ),
+          'type'  => 'oembed',
+          // Allow to clone? Default is false
+          'clone' => false,
+          // Input size
+          'size'  => 30,
         ),
         )
       );
@@ -437,7 +446,7 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
 
 
       $args['fields'][] = array( 'type' => 'date',
-    'label' => 'Fecha de Publicación', 'date_type' => 'day', 'format' => 'date');
+      'label' => 'Fecha de Publicación', 'date_type' => 'day', 'format' => 'date');
 
       // Configure form fields
       $args['fields'][] = array( 'type' => 'search',

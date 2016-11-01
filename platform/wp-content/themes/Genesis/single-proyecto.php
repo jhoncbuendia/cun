@@ -41,10 +41,16 @@
                                 <div class="logo-project">
               <?php
               $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
-		
+              //$objc = get_post_meta(get_the_ID(), 'oembed', false);
+
               echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+
+
+
+               //echo wp_oembed_get($objc[0]);
               ?>
-           
+
+
 				</div>
                             </div>
                         </div>
@@ -71,7 +77,7 @@
                     <article class="item-project">
                         <?php
 
-			$obj = get_post_meta(get_the_ID(), 'objetivos', true ); 
+			$obj = get_post_meta(get_the_ID(), 'objetivos', true );
 			foreach($obj as $o){
 				echo $o. "<br/><br/>";
 			}
@@ -106,7 +112,7 @@
                 <h3 class="title online gruop-title"><?php echo get_post_meta(get_the_ID(), 'nmgrupo', true ); ?></h3>
                 <div class="row the-users">
                     <div class="col-md-2 image-profile">
-                        <?php 
+                        <?php
 echo wp_get_attachment_image(get_post_meta(get_the_ID(), 'img_grupo', true ), array('120', '120'), "", array( "class" => "img-responsive" ) ); ?>
                     </div>
                     <div class="col-md-8 name-user">
