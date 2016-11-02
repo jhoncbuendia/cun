@@ -326,7 +326,7 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
         ),
         array(
           'id'    => 'oembed',
-          'name'  => __( 'oEmbed(s)', 'your-prefix' ),
+          'name'  => __( 'URL Video del Proyecto', 'your-prefix' ),
           'type'  => 'oembed',
           // Allow to clone? Default is false
           'clone' => false,
@@ -464,5 +464,25 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
       register_wpas_form('myform', $args);
     }
     add_action('init','my_search_form');
+
+    function basicSearch() {
+      $args = array();
+      // Set default WP_Query
+      $args['wp_query'] = array( 'post_type' => array('proyecto'),
+      'orderby' => 'title',
+      'order' => 'ASC' );
+
+    // Configure form fields
+    $args['fields'][] = array( 'type' => 'search',
+    'label' => 'Titulo Proyecto', 'compare' => 'LIKE');
+
+
+    $args['fields'][] = array( 'type' => 'submit',
+    'class' => 'button',
+    'value' => 'Search' );
+
+    register_wpas_form('bform', $args);
+    }
+    add_action('init','basicSearch');
 
     ?>

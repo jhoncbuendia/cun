@@ -64,7 +64,7 @@ $search = new WP_Advanced_Search('myform');
               <div class="col-md-8 content-article">
                 <h5 class="title-article"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
                 <content>
-                  <?php the_title(); ?>
+                  <?php echo wp_trim_words(get_post_meta(get_the_ID(), 'pproblema', true ), 10, '...' ); ?>
                 </content>
                 <a href="<?php the_permalink(); ?>" class="know-more">CONOCER MÁS</a>
               </div>
