@@ -2,12 +2,67 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if(function_exists('current_user_can'))
 //if(!current_user_can('manage_options')) {
-    
+
 if(!current_user_can('delete_pages')) {
     die('Access Denied');
-}	
+}
 if(!function_exists('current_user_can')){
 	die('Access Denied');
+}
+
+/**
+ * Get attachment ID by image src
+ *
+ * @param $image_url
+ *
+ * @return mixed
+ */
+function hugeit_slider_img_get_image_id($image_url)
+{
+	global $wpdb;
+	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM " . $wpdb->prefix . "posts WHERE guid='%s';", $image_url));
+	if($attachment)
+		return $attachment[0];
+}
+
+/**
+ * Get image url by image src, width, height
+ *
+ * @param $image_src
+ * @param $image_width
+ * @param $image_height
+ * @param bool $is_attachment
+ *
+ * @return false|string
+ */
+function hugeit_slider_img_get_image_by_sizes_and_src($image_src, $image_sizes, $is_thumbnail)
+{
+	$is_attachment = hugeit_slider_img_get_image_id($image_src);
+	$img_sizes = getimagesize($image_src);
+	$img_height = $img_sizes[1];
+
+	if (is_string($image_sizes)) {
+		$image_sizes = $image_sizes;
+		$img_width = intval($image_sizes);
+	}
+	if (is_object($image_sizes)) {
+		// Closures are currently implemented as objects
+		$image_sizes = array($image_sizes, '');
+	}
+	if (!$is_attachment) {
+		$image_url = $image_src;
+	} else {
+		$attachment_id = hugeit_slider_img_get_image_id($image_src);
+		$natural_img_width = explode(',', wp_get_attachment_image_sizes($attachment_id, 'full'));
+		$natural_img_width = $natural_img_width[1];
+		$natural_img_width = str_replace(' ', '', $natural_img_width);
+		$natural_img_width = intval(str_replace('px', '', $natural_img_width));
+		if ($is_thumbnail) {
+			$image_url = wp_get_attachment_image_url($attachment_id, 'thumbnail');
+		}
+	}
+
+	return $image_url;
 }
 
 function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
@@ -15,20 +70,20 @@ function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
 	?>
     <script language="javascript">
 		function ordering(name,as_or_desc) {
-			document.getElementById('asc_or_desc').value=as_or_desc;		
+			document.getElementById('asc_or_desc').value=as_or_desc;
 			document.getElementById('order_by').value=name;
 			document.getElementById('admin_form').submit();
 		}
 		function saveorder() {
 			document.getElementById('saveorder').value="save";
 			document.getElementById('admin_form').submit();
-			
+
 		}
 		function listItemTask(this_id,replace_id) {
 			document.getElementById('oreder_move').value=this_id+","+replace_id;
 			document.getElementById('admin_form').submit();
 		}
-		function doNothing() {  
+		function doNothing() {
 			var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
 			if( keyCode == 13 ) {
 				if (!e) var e = window.event;
@@ -45,12 +100,10 @@ function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
 	</script>
 
 <div class="wrap">
-	
     <?php
     $path_site2 = plugins_url("./images", __FILE__);
     $new_slider_safe_link = wp_nonce_url('admin.php?page=sliders_huge_it_slider&task=add_cat', 'new_slider', 'hugeit_slider_new_slider_nonce');
     ?>
-		
 	<div class="free_version_banner" <?php if( isset($_COOKIE['hgSliderFreeBannerShow']) && isset($_COOKIE['hgSliderFreeBannerShow']) == "no" ){ echo 'style="display:none"'; } ?> >
 		<a class="close_free_banner">+</a>
 		<img class="manual_icon" src="<?php echo $path_site2; ?>/icon-user-manual.png" alt="user manual" />
@@ -82,7 +135,7 @@ function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
 			</h2>
 			<?php
 			$serch_value='';
-			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}} 
+			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}}
 			$serch_fields='<div class="alignleft actions"">
 				<label for="search_events_by_title" style="font-size:14px">Filter: </label>
 					<input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
@@ -100,7 +153,8 @@ function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
 					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="prod_count"  style="width:75px;" ><span>Images</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px">Delete</th>
+					 <th style="width:40px"><span>Duplicate</span><span class="sorting-indicator"></span></th>
+					<th style="width:40px"><span>Delete</span><span class="sorting-indicator"></span></th>
 				 </tr>
 				</thead>
 				<tbody>
@@ -172,13 +226,15 @@ function hugeit_slider_html_show_sliders( $rows,  $pageNav,$sort,$cat_row) {
 
 					$delete_slide_safe_link = wp_nonce_url('admin.php?page=sliders_huge_it_slider&task=remove_cat&id=' . esc_html($rows[$i]->id), 'delete_slider_' . $rows[$i]->id, 'hugeit_slider_remove_slide_nonce');
 					$edit_slide_safe_link = wp_nonce_url('admin.php?page=sliders_huge_it_slider&task=edit_cat&id='. esc_html($rows[$i]->id), 'edit_slider_' . $rows[$i]->id, 'hugeit_slider_edit_slide_nonce');
+					$huge_it_slider_nonce_duplicate_gallery = wp_nonce_url('admin.php?page=sliders_huge_it_slider&task=duplicate_slider_image&id='. esc_html($rows[$i]->id), 'duplicate_slider' . $rows[$i]->id, 'hugeit_slider_duplicate_slide_nonce');
 					?>
 					<tr <?php if($trcount%2==0){ echo 'class="has-background"';}?>>
 						<td><?php echo $rows[$i]->id; ?></td>
 						<td><a href="<?php echo esc_attr($edit_slide_safe_link); ?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td>(<?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->prod_count;} ?>)</td>
-						<td><a href="<?php echo esc_attr($delete_slide_safe_link); ?>" class="hugeit_slider_delete_slide">Delete</a></td>
-					</tr> 
+						<td><a href="<?php echo esc_url($huge_it_slider_nonce_duplicate_gallery); ?>" class="duplicate-link"><span class="duplicate-icon"></span></a></td>
+						<td><a href="<?php echo esc_attr($delete_slide_safe_link); ?>" class="hugeit_slider_delete_slideclass delete-link" ><span class="delete-icon"></span></a></td>
+					</tr>
 				 <?php } ?>
 				</tbody>
 			</table>
@@ -259,11 +315,14 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 	<?php
 	$link_without_task = wp_nonce_url('admin.php?page=sliders_huge_it_slider&id=' . $row->id, 'apply_slider_' . $row->id, 'hugeit_slider_apply_slider');
 	?>
+	<div id="slider-image-zoom">
+		<img src=""/>
+	</div>
 <form action="<?php echo $link_without_task; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div id="slider-header">
 		<ul id="sliders-list">
-			
+
 			<?php
 			foreach($rowsld as $rowsldires) :
 				if($rowsldires->id != $row->id) :
@@ -276,7 +335,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 					<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('images/edit.png', __FILE__) ;?>);cursor: pointer;">
 						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($row->name));?>" />
 					</li>
-				<?php	
+				<?php
 				endif;
 			endforeach;
 
@@ -296,7 +355,13 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 
 				<div id="post-body">
 					<div id="post-body-heading">
-						<h3>Slides</h3>
+						<h3  style="float: none">Slides</h3>
+						<input type="hidden"  name="slider_image_imege_hover_preview" value="off"/>
+						<label for="img_hover_preview" class="slider_image_imege_hover_preview">Image preview on hover
+							<input type="checkbox" id="img_hover_preview" name="slider_image_imege_hover_preview"
+							       value="on" <?php if ( get_option('slider_image_imege_hover_preview') == 'on' )
+								echo 'checked' ?>>
+						</label>
 <script>
 	jQuery(document).ready(function($) {
 		var _custom_media = true,
@@ -341,8 +406,8 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 							<span class="wp-media-buttons-icon"></span>Add Video Slide
 							<img class="hugeit_slider_pro_logo" src="<?php echo plugins_url( 'images/pro-logo.png' , __FILE__ ) ?>">
 						</a>
-						<div class="huge-it-newuploader uploader button button-primary add-new-image">
-							<input type="button" class="button wp-media-buttons-icon" name="_unique_name_button" id="_unique_name_button" value="Add Image Slide" />
+						<div class="huge-it-newuploader uploader   add-new-image">
+							<input type="button" class="button button-primary wp-media-buttons-icon" name="_unique_name_button" id="_unique_name_button" value="Add Image Slide" />
 						</div>
 						<script>
 							jQuery(document).ready(function() {
@@ -370,7 +435,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 									}
 								};
 							});
-						</script>				
+						</script>
 					</div>
 					<ul id="images-list">
 					<?php
@@ -379,7 +444,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 								return $match[1];
 							}
 						}
-					
+
 					$i=2;
 					foreach ($rowim as $key=>$rowimages) {
 						if ( $rowimages->sl_type == '' ) {
@@ -393,7 +458,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 						<li <?php if($i%2==0){echo "class='has-background'";}$i++; ?>>
 						<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
 							<div class="image-container">
-								<img src="<?php echo $rowimages->image_url; ?>" />
+								<img src="<?php echo esc_url(hugeit_slider_img_get_image_by_sizes_and_src($rowimages->image_url,array(),true)); ?>" data-img-src="<?php echo esc_url($rowimages->image_url);?>"/>
 								<div>
 								<script>
 									jQuery(document).ready(function($){
@@ -432,16 +497,15 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 							</div>
 							<div class="image-options">
 								<div>
-									<label for="titleimage<?php echo $rowimages->id; ?>">Title:</label>
-									<input  class="text_area" type="text" id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->name; ?>">
+									<input  class="text_area" type="text" id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->name; ?>" placeholder="Title">
 								</div>
 								<div class="description-block">
-									<label for="im_description<?php echo $rowimages->id; ?>">Description:</label>
-									<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
+									<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" placeholder="Description"><?php echo $rowimages->description; ?></textarea>
 								</div>
 								<div class="link-block">
-									<label for="sl_url<?php echo $rowimages->id; ?>">URL:</label>
-									<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
+									<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>" placeholder="URL" value="<?php echo $rowimages->sl_url; ?>" >
+								</div>
+								<div class="open-new-tab">
 									<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">Open in new tab</label>
 									<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
 									<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
@@ -450,7 +514,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 									<a class="button remove-image" href="<?php echo esc_attr($apply_nonce); ?>">Remove Image</a>
 								</div>
 							</div>
-							
+
 						<div class="clear"></div>
 						</li>
 						<?php
@@ -470,7 +534,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 											<option <?php if($rowimages->name == 0){echo 'selected="selected"';} ?> value="0">All Categories</option>
 										<?php foreach ($categories as $strcategories){ ?>
 											<option <?php if($rowimages->name == $strcategories->cat_name){echo 'selected="selected"';} ?> value="<?php echo $strcategories->cat_name; ?>"><?php echo $strcategories->cat_name; ?></option>
-										<?php	}	?> 
+										<?php	}	?>
 										</select>
 									</div>
 									<div  class="left">
@@ -478,7 +542,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 										<input class="text_area url-input number" type="number" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
 									</div>
 								</div>
-	
+
 								<div>
 									<label class="long" for="sl_stitle<?php echo $rowimages->id; ?>">Show Title:</label>
 									<input type="hidden" name="sl_stitle<?php echo $rowimages->id; ?>" value="" />
@@ -501,7 +565,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 										<input type="hidden" name="sl_postlink<?php echo $rowimages->id; ?>" value="" />
 										<input  <?php if($rowimages->sl_postlink == '1'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" name="sl_postlink<?php echo $rowimages->id; ?>" value="1" />
 									</div>
-									<div  class="left">	
+									<div  class="left">
 										<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">Open Link In New Tab:</label>
 										<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
 										<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
@@ -512,22 +576,22 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 									<a class="button remove-image" href="<?php echo esc_attr($apply_nonce); ?>">Remove Last posts</a>
 								</div>
 							</div>
-							
+
 						<div class="clear"></div>
 						</li>
 						<?php
 						break;
-						case 'video': 
-							
+						case 'video':
+
 						?>
-							
+
 							<li <?php if($i%2==0){echo "class='has-background'";}$i++; ?>  >
 							<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
 								<?php 	if(strpos($rowimages->image_url,'youtube') !== false || strpos($rowimages->image_url,'youtu') !== false) {
 											$liclass="youtube";
 											$video_thumb_url=hugeit_slider_get_youtube_id_from_url($rowimages->image_url);
 											$thumburl='<img src="http://img.youtube.com/vi/'.$video_thumb_url.'/mqdefault.jpg" alt="" />';
-										}else if (strpos($rowimages->image_url,'vimeo') !== false) {	
+										}else if (strpos($rowimages->image_url,'vimeo') !== false) {
 											$liclass="vimeo";
 											$vimeo = $rowimages->image_url;
 											$imgid = explode( "/", $vimeo );
@@ -536,11 +600,11 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 											$imgsrc=esc_html($hash[0]['thumbnail_large']);
 											$thumburl ='<img src="'.$imgsrc.'" alt="" />';
 										}
-										?> 
-									<div class="image-container">	
+										?>
+									<div class="image-container">
 										<?php echo $thumburl; ?>
 										<div class="play-icon <?php echo $liclass; ?>"></div>
-										
+
 										<div>
 											<script>
 												jQuery(document).ready(function($) {
@@ -577,9 +641,9 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 									</div>
 									<div class="image-options video-options">
 										<?php 	if(strpos($rowimages->image_url,'youtube') !== false || strpos($rowimages->image_url,'youtu') !== false) { ?>
-										
+
 										<div class="video-quality video-options">
-											<label for="titleimage<?php echo $rowimages->id; ?>">Quality:</label>	
+											<label for="titleimage<?php echo $rowimages->id; ?>">Quality:</label>
 											<select id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>">
 												<option value="none" <?php if($rowimages->name == 'none'){ echo 'selected="selected"'; } ?>>Auto</option>
 												<option value="280" <?php if($rowimages->name == '280'){ echo 'selected="selected"'; } ?>>280</option>
@@ -590,7 +654,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 											</select>
 										</div>
 										<div class="video-volume video-options">
-											<label for="im_description<?php echo $rowimages->id; ?>">Volume:</label>	
+											<label for="im_description<?php echo $rowimages->id; ?>">Volume:</label>
 											<div class="slider-container">
 												<input id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->description; ?>" data-slider-range="1,100"  type="text" data-slider="true"  data-slider-highlight="true" />
 											</div>
@@ -598,24 +662,24 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 										<div class="video-options">
 											<label class="long" for="sl_url<?php echo $rowimages->id; ?>">Show Controls:</label>
 											<input type="hidden" name="sl_url<?php echo $rowimages->id; ?>" value="" />
-											<input <?php if($rowimages->sl_url == 'on'){ echo 'checked="checked"'; } ?> class="link_target"  type="checkbox" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>" />		
+											<input <?php if($rowimages->sl_url == 'on'){ echo 'checked="checked"'; } ?> class="link_target"  type="checkbox" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>" />
 										</div>
 										<div class="video-options">
 											<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">Show Info:</label>
 											<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
-											<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />		
+											<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
 										</div>
 										<div class="remove-image-container">
 											<a class="button remove-image" href="<?php echo esc_attr($apply_nonce); ?>">Remove Video</a>
 										</div>
 										<?php } else {?>
-										
+
 										<div class="video-quality video-options">
-											<label for="sl_link_target<?php echo $rowimages->id; ?>">Elements Color:</label>	
+											<label for="sl_link_target<?php echo $rowimages->id; ?>">Elements Color:</label>
 											<input name="sl_link_target<?php echo $rowimages->id; ?>" type="text" class="color" id="sl_link_target<?php echo $rowimages->id; ?>" size="10" value="<?php echo $rowimages->link_target; ?>"/>
 										</div>
 										<div class="video-volume video-options">
-											<label for="im_description<?php echo $rowimages->id; ?>">Volume:</label>	
+											<label for="im_description<?php echo $rowimages->id; ?>">Volume:</label>
 											<div class="slider-container">
 												<input id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->description; ?>" data-slider-range="1,100"  type="text" data-slider="true"  data-slider-highlight="true" />
 											</div>
@@ -624,7 +688,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 											<a class="button remove-image" href="<?php echo esc_attr($apply_nonce); ?>">Remove Video</a>
 										</div>
 										<?php } ?>
-									</div>	
+									</div>
 							<div class="clear"></div>
 							</li>
 					<?php
@@ -635,7 +699,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 				</div>
 
 			</div>
-				
+
 			<!-- SIDEBAR -->
 			<div id="postbox-container-1" class="postbox-container">
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
@@ -697,7 +761,7 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 						</li>
 						<li>
 							<label for="show_thumb">Navigate By</label>
-							<input type="hidden" value="off" name="show_thumb" />					
+							<input type="hidden" value="off" name="show_thumb" />
 							<select id="show_thumb" name="show_thumb">
 								  <option <?php if($row->show_thumb == 'dotstop'){ echo 'selected'; } ?> value="dotstop">Dots</option>
 								  <option <?php if($row->show_thumb == 'thumbnails'){ echo 'selected'; } ?> value="thumbnails">Thumbnails</option>
@@ -706,19 +770,19 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 						</li>
 						<li>
 							<label for="pause_on_hover">Pause on Hover</label>
-							<input type="hidden" value="off" name="pause_on_hover" />					
+							<input type="hidden" value="off" name="pause_on_hover" />
 							<input type="checkbox" name="pause_on_hover"  value="on" id="pause_on_hover"  <?php if($row->pause_on_hover  == 'on'){ echo 'checked="checked"'; } ?> />
 						</li>
 						<li>
 							<label for="video_autoplay">Video Autoplay</label>
-							<input type="hidden" value="off" name="video_autoplay" />					
+							<input type="hidden" value="off" name="video_autoplay" />
                             <input type="checkbox" name="video_autoplay"  value="on" id="video_autoplay"  disabled="disabled" />
                             <a class="probuttonlink" href="http://huge-it.com/slider/" target="_blank">( <span style="color: red;font-size: 14px;"> PRO </span> )</a>
 						</li>
                                                 <!--###########RANDOM UPDATE##############-->
                         <li>
 							<label for="random_images">Random</label>
-							<input type="hidden" value="off" name="random_images" />					
+							<input type="hidden" value="off" name="random_images" />
 							<input type="checkbox" name="random_images"  value="on" id="random_images"  <?php if($row->random_images  == 'on'){ echo 'checked="checked"'; } ?> />
 						</li>
 					</ul>
@@ -786,7 +850,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 			</style>
 			<script type="text/javascript">
 				jQuery(document).ready(function() {
-				
+
 					jQuery('#slider-posts-tabs li a').click(function(){
 						jQuery('#slider-posts-tabs li').removeClass('active');
 						jQuery(this).parent().addClass('active');
@@ -795,12 +859,12 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 						jQuery(liID).addClass('active');
 						return false;
 					});
-					
+
 					jQuery('.huge-it-insert-post-button').on('click', function() {
 						alert("Add Post Slide feature is disabled in free version. If you need this functionality, you need to buy the commercial version.");
 						return false;
 					});
-			
+
 
 					jQuery('#slider-posts-tabs-content-0 .huge-it-insert-post-button').on('click', function() {
 						var ID1 = jQuery('#huge-it-add-posts-params').val();
@@ -808,9 +872,9 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 						window.parent.uploadID.val(ID1);
 						tb_remove();
 						jQuery("#save-buttom").click();
-						
+
 					});
-				
+
 					jQuery('.huge-it-post-checked').change(function(){
 						if(jQuery(this).is(':checked')){
 							jQuery(this).addClass('active');
@@ -819,7 +883,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 							jQuery(this).removeClass('active');
 							jQuery(this).parent().removeClass('active');
 						}
-						
+
 						var inputval="";
 						jQuery('#huge-it-add-posts-params').val("");
 						jQuery('.huge-it-post-checked').each(function(){
@@ -829,7 +893,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 						});
 						jQuery('#huge-it-add-posts-params').val(inputval);
 					});
-											
+
 					jQuery('#huge_it_slider_add_posts_wrap .view-type-block a').click(function(){
 						jQuery('#huge_it_slider_add_posts_wrap .view-type-block a').removeClass('active');
 						jQuery(this).addClass('active');
@@ -853,8 +917,8 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 				});
 			</script>
 			<a id="closepopup"  onclick=" parent.eval('tb_remove()')" style="display:none;" > [X] </a>
-	
-	
+
+
 	<div id="huge_it_slider_add_posts">
 		<div id="huge_it_slider_add_posts_wrap">
 			<span class="buy-pro">This feature is disabled in free version. <br />If you need this functionality, you need to <a href="http://huge-it.com/slider/" target="_blank">buy the commercial version</a>.</span>
@@ -866,7 +930,6 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 				<li id="slider-posts-tabs-content-0"  class="active">
 					<!-- STATIC POSTS -->
 					<div class="control-panel">
-	
 						<label for="huge-it-categories-list">Select Category
 							<select id="huge-it-categories-list" name="iframecatid" onchange="this.form.submit()">
 							<?php $categories = get_categories(  ); ?>
@@ -883,7 +946,6 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 							?>
 							</select>
 						</label>
-				
 						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-top'>Insert Posts</button>
 						<label for="huge-it-description-length">Description Length <input id="huge-it-description-length" type="text" name="posthuge-it-description-length" value="<?php echo $row->published; ?>" placeholder="Description length" /></label>
 						<div class="view-type-block">
@@ -949,7 +1011,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 				</li>
 				<li id="slider-posts-tabs-content-1" class="recent-post-options">
 					<!-- RECENT POSTS -->
-				
+
 								<div>
 									<div class="left less-margin height">
 										<?php $categories = get_categories(); ?>
@@ -958,7 +1020,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 											<option <?php if(isset($rowimages->name) && $rowimages->name == 0){echo 'selected="selected"';} ?> value="0">All Categories</option>
 										<?php foreach ($categories as $strcategories){ ?>
 											<option <?php if($rowimages->name == $strcategories->cat_name){echo 'selected="selected"';} ?> value="<?php echo $strcategories->cat_name; ?>"><?php echo $strcategories->cat_name; ?></option>
-										<?php	}	?> 
+										<?php	}	?>
 										</select>
 									</div>
 									<div  class="left height">
@@ -966,7 +1028,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 										<input class="text_area url-input number" type="number" name="sl_url" value="5" >
 									</div>
 								</div>
-	
+
 								<div>
 									<label class="long" for="sl_stitle">Show Title:</label>
 									<input type="hidden" name="sl_stitle" value="" />
@@ -989,7 +1051,7 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 										<input type="hidden" name="sl_postlink" value="" />
 										<input  checked="checked" class="link_target" type="checkbox" name="sl_postlink" value="1" />
 									</div>
-									<div  class="left">	
+									<div  class="left">
 										<label class="long" for="sl_link_target">Open Link In New Tab:</label>
 										<input type="hidden" name="sl_link_target" value="" />
 										<input checked="checked" class="link_target" type="checkbox" name="sl_link_target" />
@@ -1000,9 +1062,9 @@ function hugeit_slider_html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_
 						<div class="clear"></div>
 						<button class='save-slider-options button-primary huge-it-insert-post-button' id='huge-it-insert-post-button-bottom'>Insert Posts</button>
 				</li>
-			</ul>		
+			</ul>
 		</div>
-	</div>		
+	</div>
 	<?php
 }
 ?>
@@ -1031,7 +1093,7 @@ function hugeit_slider_html_popup_video(){
 		#TB_window {height:250px !important;}
 	</style>
 	<script type="text/javascript">
-		jQuery(document).ready(function() {	
+		jQuery(document).ready(function() {
 			jQuery('.huge-it-insert-video-button').on('click', function() {
 						alert("Add Video Slide feature is disabled in free version. If you need this functionality, you need to buy the commercial version.");
 						return false;
@@ -1040,15 +1102,15 @@ function hugeit_slider_html_popup_video(){
 			jQuery('.huge-it-insert-post-button').on('click', function() {
 				var ID1 = jQuery('#huge_it_add_video_input').val();
 				if(ID1==""){alert("Please copy and past url form Youtobe or Vimeo to insert into slider.");return false;}
-				
+
 				window.parent.uploadID.val(ID1);
-				
+
 				tb_remove();
 				jQuery("#save-buttom").click();
 			});
-			
+
 			jQuery('#huge_it_add_video_input').keyup(function(){
-				
+
 				if (jQuery(this).val().indexOf("youtube") >= 0){
 					jQuery('#add-video-popup-options > div').removeClass('active');
 					jQuery('#add-video-popup-options  .youtube').addClass('active');
@@ -1060,19 +1122,18 @@ function hugeit_slider_html_popup_video(){
 					jQuery('#add-video-popup-options  .error-message').addClass('active');
 				}
 			});
-					
 			jQuery('.updated').css({"display":"none"});
 		<?php if(isset($_GET["closepop"])) {
 			$getclosepopup = intval($_GET["closepop"]);
 			if($getclosepopup == 1) { ?>
 				jQuery("#closepopup").click();
 				self.parent.location.reload();
-		<?php	
+		<?php
 			}
 		}
 		?>
 		});
-		
+
 	</script>
 	<a id="closepopup"  onclick=" parent.eval('tb_remove()')" style="display:none;" > [X] </a>
 
@@ -1081,13 +1142,13 @@ function hugeit_slider_html_popup_video(){
 		<div id="huge_it_slider_add_videos_wrap">
 			<h2>Add Video URL From Youtube or Vimeo</h2>
 			<div class="control-panel">
-			
+
 					<input type="text" id="huge_it_add_video_input" name="huge_it_add_video_input" />
 					<button class='save-slider-options button-primary huge-it-insert-video-button' id='huge-it-insert-video-button'>Insert Video Slide</button>
 					<div id="add-video-popup-options">
 						<div class="youtube">
 							<div>
-								<label for="show_quality">Quality:</label>	
+								<label for="show_quality">Quality:</label>
 								<select id="show_quality" name="show_quality">
 									<option value="none">Auto</option>
 									<option value="280">280</option>
@@ -1098,7 +1159,7 @@ function hugeit_slider_html_popup_video(){
 								</select>
 							</div>
 							<div>
-								<label for="">Volume:</label>	
+								<label for="">Volume:</label>
 								<div class="slider-container">
 									<input name="show_volume" value="50" data-slider-range="1,100"  type="text" data-slider="true"  data-slider-highlight="true" />
 								</div>
@@ -1106,21 +1167,21 @@ function hugeit_slider_html_popup_video(){
 							<div>
 								<label for="show_controls">Show Controls:</label>
 								<input type="hidden" name="show_controls" value="" />
-								<input type="checkbox" class="checkbox" checked="checked" name="show_controls" />	
+								<input type="checkbox" class="checkbox" checked="checked" name="show_controls" />
 							</div>
 							<div>
 								<label for="show_info">Show Info:</label>
 								<input type="hidden" name="show_info" value="" />
-								<input type="checkbox" class="checkbox" checked="checked" name="show_info" />	
+								<input type="checkbox" class="checkbox" checked="checked" name="show_info" />
 							</div>
 						</div>
 						<div class="vimeo">
 							<div>
-								<label for="">Elements Color:</label>	
+								<label for="">Elements Color:</label>
 								<input name="show_quality_vim" type="text" class="color" id="" size="10" value="00adef"/>
 							</div>
 							<div>
-								<label for="">Volume:</label>	
+								<label for="">Volume:</label>
 								<div class="slider-container">
 									<input name="show_volume_v" value="50" data-slider-range="1,100"  type="text" data-slider="true"  data-slider-highlight="true" />
 								</div>
@@ -1130,9 +1191,9 @@ function hugeit_slider_html_popup_video(){
 							Please insert link only from youtube or vimeo
 						</div>
 					</div>
-				
+
 			</div>
-		</div>	
+		</div>
 	</div>
 <?php
 }

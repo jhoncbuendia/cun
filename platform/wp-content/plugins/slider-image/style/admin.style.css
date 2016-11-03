@@ -1,3 +1,63 @@
+.wp-list-table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+a span.duplicate-icon {
+    background: url(../images/fields.opt.png) 0 -43px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 22px;
+    height: 23px;
+    opacity: 0.5;
+}
+
+a span.delete-icon {
+    background: url(../images/fields.opt.png) 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 22px;
+    height: 23px;
+    opacity: 0.5;
+}
+
+a.duplicate-link {
+    margin-left: 18px;
+    box-shadow: none;
+}
+
+a.delete-link {
+    margin-left: 13px;
+    box-shadow: none;
+}
+#slider-image-zoom {
+    position: fixed;
+    width: 50%;
+    height: 80%;
+    display: none;
+    left: 47%;
+    top: 50%;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+}
+
+#slider-image-zoom img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+.slider_image_imege_hover_preview{
+    float:left;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
 /*#########SLIDERS LIST PAGE###########*/
 #sliders-list-page .add-new-h2 {
     cursor: pointer;
@@ -115,7 +175,7 @@
 
 #post-body-heading {
     width: 100%;
-    padding: 10px 0 10px 0;
+    padding: 0;
     height: 50px;
     background: #fff;
     border-bottom: 1px solid #e5e5e5;
@@ -220,14 +280,17 @@
 #images-list .image-container {
     position: relative;
     width: 24%;
-    padding: 0 0.5% 0 0.5%;
+    padding: 0px 0.5% 0px 0.5%;
     float: left;
     max-width: 220px;
+    height: 150px;
+    min-width: 124px;
+    box-sizing: border-box;
 }
 
 #images-list .image-container img {
     width: 100%;
-    height: auto;
+    height: calc(150px - 26px);
 }
 
 #images-list .play-icon {
@@ -248,7 +311,9 @@
 
 #images-list .image-options {
     float: left;
-    width: 74%;
+    max-width: 80%;
+    margin-left: 4%;
+    width: calc(95% - 220px);
 }
 
 #images-list .image-options.video-options {
@@ -274,11 +339,17 @@
 }
 
 #images-list .image-options input[type='text'], #images-list .image-options select, #images-list .image-options textarea {
-    width: 83%;
+    width: 98%;
 }
 
 #images-list .image-options input.color {
     width: 100px;
+}
+
+.link-block{
+    float: left;
+    width: 50% !important;
+    display: inline-block;
 }
 
 #images-list .image-options .link-block label.long {
@@ -286,15 +357,23 @@
     padding: 3px 0 0 5px;
 }
 
-#images-list .image-options .link-block input.url-input {
-    float: left;
-    width: 61%;
-}
-
 #images-list .image-options .link-block input.link_target {
     margin-top: 4px;
 }
 
+div.open-new-tab, div.remove-image-container {
+    display: inline-block ;
+    width: auto !important;
+    float: left;
+    clear: none !important;
+    padding-top: 0 ;
+    height: 20px;
+}
+div.remove-image-container{
+    margin-left: 11px !important;
+    float: right !important;
+    margin-right: 2% !important;
+}
 #images-list .image-options textarea {
     resize: vertical;
 }
@@ -324,15 +403,9 @@
     display: inline-block;
     width: 140px;
     margin: 6px 0 0 -10px;
+    padding: 0;
 }
 
-#images-list .image-options .remove-image-container {
-    position: relative;
-    clear: both;
-    height: 20px;
-    padding: 10px 0 0 0;
-    width: 100%;
-}
 
 #images-list .image-options .remove-image {
     float: right;
@@ -1129,11 +1202,11 @@
 }
 
 .free_version_banner .hg_social_link_buttons a.gplus {
-    background-position: -120px 0;
+    background-position: -121px 0;
 }
 
 .free_version_banner .hg_social_link_buttons a.yt {
-    background-position: -40px 0;
+    background-position: -41px 0;
 }
 
 @media screen and (max-width: 1400px) {

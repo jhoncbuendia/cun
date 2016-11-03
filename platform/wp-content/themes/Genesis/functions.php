@@ -472,17 +472,25 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
       'orderby' => 'title',
       'order' => 'ASC' );
 
-    // Configure form fields
-    $args['fields'][] = array( 'type' => 'search',
-    'label' => 'Titulo Proyecto', 'compare' => 'LIKE');
+      $args['meta_key_relation'] = array(
+        'relation' => 'OR', // Optional, defaults to "AND"
+        array(
+          'key'     => '_my_custom_key',
+          'value'   => 'Value I am looking for',
+          'compare' => '='
+        ));
+
+        // Configure form fields
+        $args['fields'][] = array( 'type' => 'search',
+        'label' => 'Titulo Proyecto', 'compare' => 'LIKE');
 
 
-    $args['fields'][] = array( 'type' => 'submit',
-    'class' => 'button',
-    'value' => 'Search' );
+        $args['fields'][] = array( 'type' => 'submit',
+        'class' => 'button',
+        'value' => 'Search' );
 
-    register_wpas_form('bform', $args);
-    }
-    add_action('init','basicSearch');
+        register_wpas_form('bform', $args);
+      }
+      add_action('init','basicSearch');
 
-    ?>
+      ?>

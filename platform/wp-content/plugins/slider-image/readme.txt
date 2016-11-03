@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/slider/
 Tags: slider, slideshow, wordpress slider, image slider, Photo Slider, slider plugin, responsive slider, easy slider, post slider, video slider, youtube slider, wordpress slideshow,
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 3.1.94
+Stable tag: 3.1.95
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Slider Huge-IT is an awesome WordPress Slider Plugin with many nice features. Ju
 
 == Description ==
 
-**Slider - Image Slider**
+Slider - Image Slider
 
 ### Check out useful links and demo page, get support or contribute for Slider.
 
@@ -413,6 +413,12 @@ After installation of pro version, in General Options all your changes will be s
 If you think, that you found a bug in our [WordPress Slider](http://huge-it.com/slider/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Changelog ==
+
+= 3.1.95 =
+* 1) Added duplicate button, so that users can duplicate sliders.
+* 2) Optimized button of the banner.
+* 3) Image on hover: optimized images on back end, so they load faster.
+
 
 = 3.1.94 =
 **We have made some CSS , UX/UI changes in order to make the plugin more user-friendly.**
@@ -865,3 +871,28 @@ Write 0  instead of number 1
 **6.3 Put two sliders side by side**
 
 * Please try to do the following: search **the .huge_it_slideshow_image_wrap_<?php echo $sliderID; ?> {** code in the **slider.php** file (it is approximately in the **997 line**). Press the enter and write the float: left; after the brace { and then write the width of the two sliders, which may fit your theme container on the frontend (you can change the width of the slider’s from the current options).
+
+
+* Huge-IT Slider Plugin suggests various effects for demonstrating your images beautifully. What you need to do is just apply one of fifteen engaging effects to slider images.
+
+* Each Slider effect has been selected carefully to supply the best solutions for your Slider images.
+
+* Slider plugin provides the option to control the quality of your videos within Slider. From admin panel you are able to show info for each slider video ticking next to Show info.
+
+* Slider plugin supplies with volume control option for each video slider gallery. Those videos within the slider could be auto played due to Video Autoplay Option. Slider speed can be changed 
+
+* That is not all. The Huge-IT Slider Plugin suggests interesting solutions for Blogs. Users can utilize Post Slide option which takes the images of your blog post into the slider automatically.
+
+* You can define the place for slider on your website whether to show slider on the left/right and center.
+
+* Two types of navigation is provided by Slider plugin which follows: Dots also Navigation. Selecting one of these navigation types visitors of your website could smoothly changing images/videos of your slider.
+
+* Through Add Video Slide button you can insert various beautiful videos into slider from two famous sources like Vimeo also YouTube. After which your visitors will enjoy sliding videos on your slider. 
+
+* Each image has the possibility to add additional link which will direct to another page from your slider images.
+
+* General Options provide features to select one of interesting icons for slider image/video navigation.
+
+* Slider allows to add unlimited number of images/videos into slider in free also pro version. Also plugin provides with the ability to create unlimited number of Slider.
+
+* Slider Plugin is easy to use by due to providing user-friendly admin section.

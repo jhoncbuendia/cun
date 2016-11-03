@@ -455,6 +455,14 @@ function hugeit_slider_apply_cat( $id ) {
 		$script_cat       = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', stripslashes( $_POST["content"] ) );
 	}
 
+	if(isset($_POST['slider_image_imege_hover_preview'])) {
+		$img_hover_preview = sanitize_text_field($_POST['slider_image_imege_hover_preview']);
+		update_option( 'slider_image_imege_hover_preview', $img_hover_preview );
+	}
+	else{
+		update_option( 'slider_image_imege_hover_preview', 'off' );
+	}
+
 	$post_slname = esc_html( $_POST["name"] );
 	$post_sl_width = esc_html( $_POST["sl_width"] );
 	$post_sl_height = esc_html( $_POST["sl_height"] );
