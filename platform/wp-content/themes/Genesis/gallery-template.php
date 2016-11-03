@@ -9,6 +9,7 @@ Template Name: Gallery Template
 		<div id="container" class="site-content site-main">
 			<div id="content" class="hentry">
 				<h1 class="home_page_title entry-header">
+					asasdasasdasdasd1111
 					<?php if ( function_exists( 'gllr_template_title' ) )
 						echo gllr_template_title(); ?>
 				</h1>
@@ -46,5 +47,5 @@ Template Name: Gallery Template
 			} ?>
 		</div><!-- #container -->
 	</div><!-- .content-area -->
-<?php get_sidebar(); ?>
+<?php /*get_sidebar();*/ ?>
 <?php get_footer(); ?>

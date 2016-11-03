@@ -17,5 +17,5 @@ get_header(); ?>
 		} ?>
 	</div><!-- #container -->
 </div><!-- .content-area -->
-<?php get_sidebar();
+<?php //get_sidebar();
 get_footer(); ?>
