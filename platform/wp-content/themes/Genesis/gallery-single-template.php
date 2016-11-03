@@ -12,8 +12,8 @@ get_header(); ?>
 			} ?>
 			<div class="gllr_clear"></div>
 		</div><!-- .hentry -->
-		<?php if( comments_open() ) {
-			comments_template();
+		<?php /*if( comments_open() ) {
+			comments_template();*/
 		} ?>
 	</div><!-- #container -->
 </div><!-- .content-area -->
