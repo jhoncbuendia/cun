@@ -69,7 +69,7 @@
                     foreach ( $myposts as $post ) : setup_postdata( $post );
                 ?>
                     <div class="col-md-4 image-article">
-                    <?php 
+                    <?php
                         if ( has_post_thumbnail() ) {
                             the_post_thumbnail(array(150, 153));
                         }
@@ -82,7 +82,7 @@
                         </content>
                         <a href="<?php the_permalink() ?>" class="know-more">CONOCER MÁS</a>
                     </div>
-                <?php endforeach; 
+                <?php endforeach;
                     wp_reset_postdata();
                 ?>
                 </div>

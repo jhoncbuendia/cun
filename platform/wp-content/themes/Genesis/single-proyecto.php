@@ -42,10 +42,11 @@ get_header();
                 <?php
                 $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
 
+                if (count($obji)> 0)
+                {
+                  echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
 
-                echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
-
-
+                }
 
                 ?>
 
@@ -77,11 +78,14 @@ get_header();
           <ul>
             <?php
             $obj = get_post_meta(get_the_ID(), 'objetivos', true );
-            foreach($obj as $o){?>
-              <li style="padding-bottom:15px;">
-                <?php echo $o; ?>
-              </li>
-              <?php
+            if (count($obj)> 0)
+            {
+              foreach($obj as $o){?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $o; ?>
+                </li>
+                <?php
+              }
             }
             ?>
           </ul>
@@ -93,11 +97,14 @@ get_header();
           <ul>
             <?php
             $met = get_post_meta(get_the_ID(), 'metodologia', true );
-            foreach($met as $m){?>
-              <li style="padding-bottom:15px;">
-                <?php echo $m; ?>
-              </li>
-              <?php
+            if (count($met)> 0)
+            {
+              foreach($met as $m){?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $m; ?>
+                </li>
+                <?php
+              }
             }
             ?>
           </ul>
@@ -108,11 +115,14 @@ get_header();
         <article class="item-project">
           <?php
           $res = get_post_meta(get_the_ID(), 'resultados', true );
-          foreach($res as $r){?>
-            <li style="padding-bottom:15px;">
-              <?php echo $r; ?>
-            </li>
-            <?php
+          if (count($res)> 0)
+          {
+            foreach($res as $r){?>
+              <li style="padding-bottom:15px;">
+                <?php echo $r; ?>
+              </li>
+              <?php
+            }
           }
           ?>
         </article>
@@ -124,11 +134,14 @@ get_header();
         <article class="item-project">
           <?php
           $bb = get_post_meta(get_the_ID(), 'bibliografia', true );
-          foreach($bb as $b){?>
-            <li style="padding-bottom:15px;">
-              <?php echo $b; ?>
-            </li>
-            <?php
+          if (count($bb)> 0)
+          {
+            foreach($bb as $b){?>
+              <li style="padding-bottom:15px;">
+                <?php echo $b; ?>
+              </li>
+              <?php
+            }
           }
           ?>
         </article>
@@ -140,8 +153,10 @@ get_header();
         <article class="item-project">
           <?php
           $objc = get_post_meta(get_the_ID(), 'oembed', false);
-          echo wp_oembed_get($objc[0]);
-          ?>
+          if (count($objc)> 0)
+          {
+            echo wp_oembed_get($objc[0]);
+          }?>
         </article>
       </div>
     </div>
@@ -156,11 +171,46 @@ get_header();
         </div>
         <div class="col-md-8 name-user">
           <h6 class="rol-user">Docente</h6>
-          <h6 class="user-project"><?php echo get_post_meta(get_the_ID(), 'docente', true ); ?></h6>
+          <h6 class="user-project">
+            <?php
+
+
+            $doce = get_post_meta(get_the_ID(), 'docente', true );
+
+            if (count($doce)> 0)
+            {
+              foreach($doce as $code){?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $code; ?>
+                </li>
+                <?php
+              }
+            }
+            ?></h6>
+          </div>
+          <div class="col-md-8 name-user">
+            <h6 class="rol-user">Alumnos</h6>
+            <h6 class="user-project">
+              <?php
+
+
+              $alu = get_post_meta(get_the_ID(), 'alumnos', true );
+
+              if (count($alu)> 0)
+              {
+                foreach($alu as $alum){?>
+                  <li style="padding-bottom:15px;">
+                    <?php echo $alum; ?>
+                  </li>
+                  <?php
+                }
+              }
+              ?></h6>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<?php endwhile; ?>
-<?php get_footer(); ?>
+    </section>
+  <?php endwhile; ?>
+  <?php get_footer(); ?>

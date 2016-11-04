@@ -54,7 +54,12 @@ $search = new WP_Advanced_Search('myform');
                 <?php
                 $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
 
-                echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+                if (count($obji)> 0)
+                {
+
+                  echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+                }
+
                 ?>
 
 

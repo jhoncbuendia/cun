@@ -6,7 +6,7 @@
  * and the comment form.
  *
  * @package WordPress
- * @subpackage Genesis
+ * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
 
