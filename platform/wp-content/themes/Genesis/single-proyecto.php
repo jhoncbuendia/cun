@@ -40,7 +40,7 @@ get_header();
             <div class="col-md-12">
               <div class="logo-project">
                 <?php
-                $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
+                $obji = get_post_meta(get_the_ID(), 'img_grupo', false);
 
                 if (count($obji)> 0)
                 {
@@ -79,27 +79,27 @@ get_header();
             <?php
             $obj = get_post_meta(get_the_ID(), 'objetivos', true );
             if(is_array($obj)){
-            if (count($obj)> 0)
-	            {
-	              foreach($obj as $o){?>
-	                <li style="padding-bottom:15px;">
-	                  <?php echo $o; ?>
-	                </li>
-	                <?php
-	              }
-	            }
-	        }
-	        else
-	        {
-	        	?>
-	                <li style="padding-bottom:15px;">
-	                  <?php echo $obj; ?>
-	                </li>
-	                <?php
-	        }
-	            ?>
-	          </ul>
-	        </article>
+              if (count($obj)> 0)
+              {
+                foreach($obj as $o){?>
+                  <li style="padding-bottom:15px;">
+                    <?php echo $o; ?>
+                  </li>
+                  <?php
+                }
+              }
+            }
+            else
+            {
+              ?>
+              <li style="padding-bottom:15px;">
+                <?php echo $obj; ?>
+              </li>
+              <?php
+            }
+            ?>
+          </ul>
+        </article>
       </div>
       <div class="problem-project">
         <h3 class="title-sections">3. Metodología</h3>
@@ -107,24 +107,24 @@ get_header();
           <ul>
             <?php
             $met = get_post_meta(get_the_ID(), 'metodologia', true);
-	    if(is_array($met)){
-            if (count($met)> 0)
-            {
-              foreach($met as $m){?>
-                <li style="padding-bottom:15px;">
-                  <?php echo $m; ?>
-                </li>
-                <?php
+            if(is_array($met)){
+              if (count($met)> 0)
+              {
+                foreach($met as $m){?>
+                  <li style="padding-bottom:15px;">
+                    <?php echo $m; ?>
+                  </li>
+                  <?php
+                }
               }
+            }else
+            {
+              ?>
+              <li style="padding-bottom:15px;">
+                <?php echo $met; ?>
+              </li>
+              <?php
             }
-}else
-{
-?>
-                <li style="padding-bottom:15px;">
-                  <?php echo $met; ?>
-                </li>
-                <?php
-}
             ?>
           </ul>
         </article>
@@ -136,25 +136,25 @@ get_header();
           $res = get_post_meta(get_the_ID(), 'resultados', true );
           if(is_array($res))
           {
-          if (count($res)> 0)
-          {
-            foreach($res as $r){?>
-              <li style="padding-bottom:15px;">
-                <?php echo $r; ?>
-              </li>
-              <?php
+            if (count($res)> 0)
+            {
+              foreach($res as $r){?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $r; ?>
+                </li>
+                <?php
+              }
             }
           }
-      	}
-      	else{
-      		?>
-              <li style="padding-bottom:15px;">
-                <?php echo $res; ?>
-              </li>
-              <?php
-      	}
+          else{
+            ?>
+            <li style="padding-bottom:15px;">
+              <?php echo $res; ?>
+            </li>
+            <?php
+          }
           ?>
-      	
+
         </article>
       </div>
     </div>
@@ -165,30 +165,38 @@ get_header();
           <?php
           $bb = get_post_meta(get_the_ID(), 'bibliografia', true );
           if(is_array($bb)){
-          if (count($bb)> 0)
-          {
-            foreach($bb as $b){?>
-              <li style="padding-bottom:15px;">
-                <?php echo $b; ?>
-              </li>
-              <?php
+            if (count($bb)> 0)
+            {
+              foreach($bb as $b){?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $b; ?>
+                </li>
+                <?php
+              }
             }
+          }else{
+            ?>
+            <li style="padding-bottom:15px;">
+              <?php echo $bb; ?>
+            </li>
+            <?php
           }
-      }else{
-      	?>
-              <li style="padding-bottom:15px;">
-                <?php echo $bb; ?>
-              </li>
-              <?php
-      }
           ?>
-      
+
         </article>
       </div>
     </div>
     <div class="row third-part">
       <div class="problem-project">
-        <h3 class="title-sections">3. Video del Proyecto</h3>
+        <h3 class="title-sections">3. Galeria</h3>
+        <article class="item-project">
+          <a href="<?php echo get_home_url(); ?>/galeria?idpost=<?php echo get_the_ID() ?>">Ver Galeria</a>
+        </article>
+      </div>
+    </div>
+    <div class="row third-part">
+      <div class="problem-project">
+        <h3 class="title-sections">4. Video del Proyecto</h3>
         <article class="item-project">
           <?php
           $objc = get_post_meta(get_the_ID(), 'oembed', false);
@@ -206,7 +214,7 @@ get_header();
       <div class="row the-users">
         <div class="col-md-2 image-profile">
           <?php
-          echo wp_get_attachment_image(get_post_meta(get_the_ID(), 'img_grupo', true ), array('120', '120'), "", array( "class" => "img-responsive" ) ); ?>
+          echo wp_get_attachment_image(get_post_meta(get_the_ID(), 'foto_docente', true ), array('120', '120'), "", array( "class" => "img-responsive" ) ); ?>
         </div>
         <div class="col-md-8 name-user">
           <h6 class="rol-user">Docente</h6>
@@ -215,24 +223,24 @@ get_header();
 
 
             $doce = get_post_meta(get_the_ID(), 'docente', true );
-if(is_array($doce)){
-            if (count($doce)> 0)
-            {
-              foreach($doce as $code){?>
-                <li style="padding-bottom:15px;">
-                  <?php echo $code; ?>
-                </li>
-                <?php
+            if(is_array($doce)){
+              if (count($doce)> 0)
+              {
+                foreach($doce as $code){?>
+                  <li style="padding-bottom:15px;">
+                    <?php echo $code; ?>
+                  </li>
+                  <?php
+                }
               }
             }
-        }
-        else{
-        	?>
-                <li style="padding-bottom:15px;">
-                  <?php echo $doce; ?>
-                </li>
-                <?php
-        }
+            else{
+              ?>
+              <li style="padding-bottom:15px;">
+                <?php echo $doce; ?>
+              </li>
+              <?php
+            }
             ?></h6>
           </div>
           <div class="col-md-8 name-user">

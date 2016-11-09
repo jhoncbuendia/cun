@@ -62,8 +62,12 @@ get_template_part( 'template-parts/content', 'single' );
                 <div class="col-md-4 image-article">
                   <?php
                   $obji = get_post_meta(get_the_ID(), 'img_proyecto', false);
-
-                  echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+                  if(is_array($obji)){
+                    echo wp_get_attachment_image($obji[0], array('120', '120'), "", array( "class" => "img-responsive" ) );
+                  }
+                  else {
+                    echo wp_get_attachment_image($obji, array('120', '120'), "", array( "class" => "img-responsive" ) );
+                  }
                   ?>
                 </div>
                 <div class="col-md-8 content-article">

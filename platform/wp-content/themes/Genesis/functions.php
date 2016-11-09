@@ -386,6 +386,16 @@ function linea_investigacion_register_meta_boxes( $meta_boxes ) {
             ),
           ),
           array(
+            'id'               => 'foto_docente',
+            'name'             => __( 'Foto del Docente', 'your-prefix' ),
+            'type'             => 'image_advanced',
+            // Delete image from Media Library when remove it from post meta?
+            // Note: it might affect other posts if you use same image for multiple posts
+            'force_delete'     => true,
+            // Maximum image uploads
+            'max_file_uploads' => 1,
+          ),
+          array(
             'name'        => __( 'Alumnos', 'your-prefix' ),
             'id'          => 'alumnos',
             'type'        => 'text',
