@@ -78,25 +78,36 @@ get_header();
           <ul>
             <?php
             $obj = get_post_meta(get_the_ID(), 'objetivos', true );
+            if(is_array($obj)){
             if (count($obj)> 0)
-            {
-              foreach($obj as $o){?>
-                <li style="padding-bottom:15px;">
-                  <?php echo $o; ?>
-                </li>
-                <?php
-              }
-            }
-            ?>
-          </ul>
-        </article>
+	            {
+	              foreach($obj as $o){?>
+	                <li style="padding-bottom:15px;">
+	                  <?php echo $o; ?>
+	                </li>
+	                <?php
+	              }
+	            }
+	        }
+	        else
+	        {
+	        	?>
+	                <li style="padding-bottom:15px;">
+	                  <?php echo $obj; ?>
+	                </li>
+	                <?php
+	        }
+	            ?>
+	          </ul>
+	        </article>
       </div>
       <div class="problem-project">
         <h3 class="title-sections">3. Metodología</h3>
         <article class="item-project">
           <ul>
             <?php
-            $met = get_post_meta(get_the_ID(), 'metodologia', true );
+            $met = get_post_meta(get_the_ID(), 'metodologia', true);
+	    if(is_array($met)){
             if (count($met)> 0)
             {
               foreach($met as $m){?>
@@ -106,6 +117,14 @@ get_header();
                 <?php
               }
             }
+}else
+{
+?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $met; ?>
+                </li>
+                <?php
+}
             ?>
           </ul>
         </article>
@@ -115,6 +134,8 @@ get_header();
         <article class="item-project">
           <?php
           $res = get_post_meta(get_the_ID(), 'resultados', true );
+          if(is_array($res))
+          {
           if (count($res)> 0)
           {
             foreach($res as $r){?>
@@ -124,7 +145,16 @@ get_header();
               <?php
             }
           }
+      	}
+      	else{
+      		?>
+              <li style="padding-bottom:15px;">
+                <?php echo $res; ?>
+              </li>
+              <?php
+      	}
           ?>
+      	
         </article>
       </div>
     </div>
@@ -134,6 +164,7 @@ get_header();
         <article class="item-project">
           <?php
           $bb = get_post_meta(get_the_ID(), 'bibliografia', true );
+          if(is_array($bb)){
           if (count($bb)> 0)
           {
             foreach($bb as $b){?>
@@ -143,7 +174,15 @@ get_header();
               <?php
             }
           }
+      }else{
+      	?>
+              <li style="padding-bottom:15px;">
+                <?php echo $bb; ?>
+              </li>
+              <?php
+      }
           ?>
+      
         </article>
       </div>
     </div>
@@ -176,7 +215,7 @@ get_header();
 
 
             $doce = get_post_meta(get_the_ID(), 'docente', true );
-
+if(is_array($doce)){
             if (count($doce)> 0)
             {
               foreach($doce as $code){?>
@@ -186,6 +225,14 @@ get_header();
                 <?php
               }
             }
+        }
+        else{
+        	?>
+                <li style="padding-bottom:15px;">
+                  <?php echo $doce; ?>
+                </li>
+                <?php
+        }
             ?></h6>
           </div>
           <div class="col-md-8 name-user">
