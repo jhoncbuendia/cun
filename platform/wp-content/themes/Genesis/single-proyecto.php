@@ -190,7 +190,36 @@ get_header();
       <div class="problem-project">
         <h3 class="title-sections">3. Galeria</h3>
         <article class="item-project">
-          <a href="<?php echo get_home_url(); ?>/galeria?idpost=<?php echo get_the_ID() ?>">Ver Galeria</a>
+          <?php
+          $imgP = get_post_meta(get_the_ID(), 'img_proyecto', false);
+          if(is_array($imgP)){
+            if (count($imgP)> 0)
+            {
+              ?>
+              <div style="width:700px!important" id="micapa">
+                <?php
+                echo wp_get_attachment_image($imgP[0], array('800', '600'), "", array( "class" => "img-thumbnail" ) );
+                ?>
+              </div>
+              <?php
+              foreach($imgP as $v){
+                ?>
+                <a id="miboton" onclick='verImg("<?php echo wp_get_attachment_url( $v ); ?>")'>
+                  <?php echo wp_get_attachment_image($v, array('120', '120'), "", array( "class" => "img-thumbnail" ) );?>
+                </a>
+                <?php
+              }
+            }
+          }
+          else
+          {
+            ?>
+            <li style="padding-bottom:15px;">
+              <?php echo $imgP; ?>
+            </li>
+            <?php
+          }
+          ?>
         </article>
       </div>
     </div>
@@ -269,3 +298,11 @@ get_header();
     </section>
   <?php endwhile; ?>
   <?php get_footer(); ?>
+  <script>
+  function verImg(id)
+  {
+
+    $("#micapa").html("<img width='640' height='360' src='"+ id +"' class='img-thumbnail'/>");
+  }
+
+  </script>
