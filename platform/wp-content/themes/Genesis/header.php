@@ -14,6 +14,8 @@
     <title>Génesis Córdoba</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel='stylesheet' id='wise_chat_core-css'  href='<?php echo get_template_directory_uri(); ?>/js/wise-chat/css/wise_chat.css?ver=4.6.1' type='text/css' media='all' />
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 </head>
@@ -39,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>                    
+                </button>
             </div>
             <div class="navbar-collapse collapse" id="principal-menu">
                 <div class="row">
